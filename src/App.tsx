@@ -5,8 +5,8 @@ function App() {
   return (
     <Box
       sx={{
-        p: '15px',
-        height: '100vh',
+        p: '12px',
+        backgroundColor: '#EFF1FE',
       }}
     >
       <Outlet />

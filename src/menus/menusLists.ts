@@ -21,7 +21,7 @@ interface menuListType {
 export const menuLists: menuListType[] = [
   {
     icon: SpaceDashboardRoundedIcon,
-    label: 'Dash Board',
+    label: 'DashBoard',
   },
   {
     icon: LibraryBooksRoundedIcon,

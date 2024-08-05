@@ -12,14 +12,14 @@ function SideBar() {
     <Box
       sx={{
         height: '100%',
-        width: 300,
+        width: '300px',
       }}
     >
       <Paper
         sx={{
           height: 'inherit',
           backgroundColor: '#171B36',
-          borderRadius: '15px',
+          borderRadius: '20px',
           p: '10px',
           display: 'flex',
           flexDirection: 'column',
@@ -63,7 +63,6 @@ function SideBar() {
             fullWidth
             sx={{
               p: '10px',
-
               backgroundColor: '#45495E',
               color: '#eee',
               '&:hover': { backgroundColor: '#45495E' },

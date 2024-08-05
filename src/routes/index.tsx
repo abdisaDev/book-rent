@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
-import SideBar from '../components/sidebar';
 import App from '../App';
+import MainLayout from '../layout/main';
 
 export const routes: RouteObject[] = [
   {
@@ -9,10 +9,22 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: 'admin',
-        element: <SideBar />,
+        element: <MainLayout />,
         children: [
           {
-            path: 'child',
+            path: 'owners',
+            element: <h2>Child</h2>,
+          },
+          {
+            path: 'books',
+            element: <h2>Child</h2>,
+          },
+          {
+            path: 'books',
+            element: <h2>Child</h2>,
+          },
+          {
+            path: 'books',
             element: <h2>Child</h2>,
           },
         ],
