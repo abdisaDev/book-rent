@@ -1,12 +1,22 @@
-import { RouteObject } from "react-router-dom";
+import { RouteObject } from 'react-router-dom';
+import SideBar from '../components/sidebar';
+import App from '../App';
 
-export const routes: RouteObject[]  = [{
-    path: "/admin",
-    element: <h1>Admin</h1>,
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <App />,
     children: [
-        {
-            path: "child",
-            element: <h2>Child</h2>
-        }
-    ]
-}]
+      {
+        path: 'admin',
+        element: <SideBar />,
+        children: [
+          {
+            path: 'child',
+            element: <h2>Child</h2>,
+          },
+        ],
+      },
+    ],
+  },
+];
