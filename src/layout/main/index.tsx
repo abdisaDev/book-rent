@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import SideBar from '../../components/sidebar';
 import AppBar from '../../components/appbar';
 import { Outlet } from 'react-router-dom';
+import Statistics from '../../components/statistics';
 
 function MainLayout() {
   return (
@@ -16,7 +17,12 @@ function MainLayout() {
           <SideBar />
         </Box>
         <Box sx={{ ml: '20px', width: '100%' }}>
-          <AppBar />
+          <Box>
+            <AppBar />
+          </Box>
+          <Box>
+            <Statistics />
+          </Box>
           <Box>
             <Outlet />
           </Box>
