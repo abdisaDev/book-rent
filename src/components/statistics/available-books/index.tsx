@@ -1,6 +1,48 @@
 import { Box, Chip, Paper, Typography } from '@mui/material';
 import { PieChart } from '@mui/x-charts/PieChart';
 
+const data = [
+  { id: 0, value: 10, label: 'Fiction', color: 'green' },
+  { id: 1, value: 15, label: 'Self Help', color: 'blue' },
+  { id: 2, value: 20, label: 'Business', color: 'red' },
+];
+
+function Legend() {
+  return (
+    <Box display='flex' flexDirection='column' ml={3}>
+      {data.map((item) => (
+        <Box key={item.label} display='flex' alignItems='center' mb={1} pr={7}>
+          <Box
+            component='span'
+            sx={{
+              width: 15,
+              height: 15,
+              backgroundColor: item.color,
+              borderRadius: '80%',
+              mr: 1,
+            }}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              columnGap: 8,
+              flex: 1,
+            }}
+          >
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant='body2'>{item.label}</Typography>
+            </Box>
+            <Box>
+              <Typography variant='body2'>{item.value}</Typography>
+            </Box>
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+}
+
 function AvailableBooksStatstics() {
   return (
     <Box>
@@ -8,6 +50,7 @@ function AvailableBooksStatstics() {
         sx={{
           boxShadow: '0 0 10px #E1D9D1A0',
           borderRadius: '10px',
+          height: '360px',
         }}
       >
         <Box
@@ -27,48 +70,36 @@ function AvailableBooksStatstics() {
             sx={{ borderRadius: '5px', backgroundColor: '#F4F5F7' }}
           />
         </Box>
-        <Box>
-          <PieChart
-            title='Available Books'
-            series={[
-              {
-                data: [
-                  { id: 0, value: 10, label: 'series A', color: 'green' },
-                  { id: 1, value: 15, label: 'series B', color: 'blue' },
-                  { id: 2, value: 20, label: 'series C', color: 'red' },
-                ],
-                startAngle: 0,
-                endAngle: 360,
-                innerRadius: 65,
-                outerRadius: 45,
-                cx: 120,
-              },
-            ]}
-            sx={{
-              [`& * .MuiChartsLegend-mark`]: {
-                rx: '100px',
-                height: '15px',
-                width: '15px',
-              },
-              [`& MuiChartsLegend-root`]: {
-                margin: '200px',
-              },
-            }}
-            slotProps={{
-              legend: {
-                itemGap: 10,
-                direction: 'column',
-                markGap: 10,
-                labelStyle: { marginTop: '200px' },
-                position: {
-                  horizontal: 'middle',
-                  vertical: 'bottom',
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Box>
+            <PieChart
+              title='Available Books'
+              series={[
+                {
+                  data,
+                  startAngle: 0,
+                  endAngle: 360,
+                  innerRadius: 65,
+                  outerRadius: 45,
+                  cx: 120,
+                  cy: 90,
                 },
-              },
-            }}
-            width={400}
-            height={200}
-          />
+              ]}
+              slotProps={{
+                legend: { hidden: true },
+              }}
+              width={260}
+              height={200}
+            />
+          </Box>
+          <Box>
+            <Legend />
+          </Box>
         </Box>
       </Paper>
     </Box>
