@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import Statistics from '../../components/statistics';
 import Table from '../../components/table';
 import { GridColDef } from '@mui/x-data-grid';
+import AreaChart from '../../components/AreaChart';
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -49,13 +50,26 @@ function AdminDashBoard() {
       <Box sx={{ height: '100%' }}>
         <Statistics />
       </Box>
-      <Box sx={{ width: '90%', ml: '20px', mt: '20px' }}>
-        <Table
-          rows={rows}
-          columns={columns}
-          isLoading={false}
-          title='Live Book Status'
-        />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '90%',
+          ml: '20px',
+          mt: '20px',
+        }}
+      >
+        <Box>
+          <Table
+            rows={rows}
+            columns={columns}
+            isLoading={false}
+            title='Live Book Status'
+          />
+        </Box>
+        <Box sx={{ ml: '20px' }}>
+          <AreaChart />
+        </Box>
       </Box>
     </Box>
   );
