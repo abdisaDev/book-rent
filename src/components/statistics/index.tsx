@@ -8,9 +8,17 @@ function Statistics() {
       sx={{
         my: '20px',
         width: '300px',
+        height: '100%',
       }}
     >
-      <Paper elevation={0} sx={{ p: '20px', borderRadius: '20px' }}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: '20px',
+          borderRadius: '15px',
+          height: '-webkit-fill-available',
+        }}
+      >
         <Box>
           <Typography variant='h6'>This Month Statistics</Typography>
           <Typography variant='body2'>

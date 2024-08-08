@@ -23,6 +23,7 @@ function IncomeStatstics() {
             <Typography fontWeight='bolder'>Income</Typography>
             <Chip
               label='This Month'
+              size='small'
               sx={{ borderRadius: '5px', backgroundColor: '#F4F5F7' }}
             />
           </Box>
@@ -30,7 +31,7 @@ function IncomeStatstics() {
             <Divider />
           </Box>
           <Box sx={{ px: '10px', py: '15px' }}>
-            <Typography>ETB 9460.00</Typography>
+            <Typography>ETB 9460.00 1.5 &darr;</Typography>
           </Box>
           <Box sx={{ px: '10px', py: '15px' }}>
             <Typography variant='body2'>

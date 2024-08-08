@@ -20,7 +20,7 @@ function MainLayout() {
           <Box>
             <AppBar />
           </Box>
-          <Box>
+          <Box sx={{ height: '87vh' }}>
             <Statistics />
           </Box>
           <Box>
