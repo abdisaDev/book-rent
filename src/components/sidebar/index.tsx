@@ -1,5 +1,4 @@
 import { Box, Button, Paper, Typography } from '@mui/material';
-import { Outlet } from 'react-router-dom';
 import {
   MenuBook as MenuBookIcon,
   Menu as MenuIcon,
@@ -57,7 +56,6 @@ function SideBar() {
             <SideBarMenu />
           </Box>
         </Box>
-
         <Box sx={{ mb: '20px' }}>
           <Button
             fullWidth
@@ -73,7 +71,6 @@ function SideBar() {
           </Button>
         </Box>
       </Paper>
-      <Outlet />
     </Box>
   );
 }

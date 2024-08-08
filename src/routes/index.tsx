@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import App from '../App';
 import MainLayout from '../layout/main';
+import AdminDashBoard from '../pages/dashboard';
 
 export const routes: RouteObject[] = [
   {
@@ -12,8 +13,8 @@ export const routes: RouteObject[] = [
         element: <MainLayout />,
         children: [
           {
-            path: 'books',
-            element: <h2>Child</h2>,
+            path: 'dashboard',
+            element: <AdminDashBoard />,
           },
           {
             path: 'books',

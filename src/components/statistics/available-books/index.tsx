@@ -1,5 +1,5 @@
 import { Box, Chip, Paper, Typography } from '@mui/material';
-import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
+import { PieChart } from '@mui/x-charts/PieChart';
 
 function AvailableBooksStatstics() {
   return (
