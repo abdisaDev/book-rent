@@ -1,56 +1,18 @@
 import { Box } from '@mui/material';
 import Statistics from '../../components/statistics';
 import Table from '../../components/table';
-import { GridColDef } from '@mui/x-data-grid';
 import AreaChart from '../../components/AreaChart';
-import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
+import { useMemo } from 'react';
+import { type MRT_ColumnDef } from 'material-react-table';
+interface BookStatus {
+  id: number;
+  book_number: string;
+  owner: string;
+  status: string;
+  price: string;
+}
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
-  { field: 'id', headerName: 'No.', width: 90 },
-  {
-    field: 'book_number',
-    headerName: 'Book no.',
-    flex: 1,
-  },
-  {
-    field: 'owner',
-    headerName: 'Owner',
-    flex: 1,
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    renderCell: (params) => (
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-        }}
-      >
-        <FiberManualRecordIcon
-          color={params.row.status === 'Rented' ? 'error' : 'primary'}
-          sx={{
-            border: `2px solid ${
-              params.row.status === 'Rented' ? ' #D32F2F' : ' #1976D2'
-            }`,
-            borderRadius: '50%',
-            fontSize: '20px',
-          }}
-        />{' '}
-        {params.row.status}
-      </Box>
-    ),
-    flex: 1,
-  },
-  {
-    field: 'price',
-    headerName: 'Price',
-    flex: 1,
-  },
-];
-
-const rows = [
+const data: BookStatus[] = [
   {
     id: 1,
     book_number: 'Snow',
@@ -115,7 +77,34 @@ const rows = [
     price: '200 Birr',
   },
 ];
+
 function AdminDashBoard() {
+  const columns = useMemo<MRT_ColumnDef<BookStatus>[]>(
+    () => [
+      {
+        accessorKey: 'id',
+        header: 'No.',
+      },
+      {
+        accessorKey: 'book_number',
+        header: 'Book No.',
+      },
+      {
+        accessorKey: 'owner',
+        header: 'Owner',
+      },
+      {
+        accessorKey: 'status',
+        header: 'Status',
+      },
+      {
+        accessorKey: 'price',
+        header: 'Price',
+      },
+    ],
+    []
+  );
+
   return (
     <Box
       sx={{ height: '87vh', display: 'flex', justifyContent: 'space-between' }}
@@ -133,12 +122,7 @@ function AdminDashBoard() {
         }}
       >
         <Box>
-          <Table
-            rows={rows}
-            columns={columns}
-            isLoading={false}
-            title='Live Book Status'
-          />
+          <Table columns={columns} data={data} title='Live Book Status' />
         </Box>
         <Box>
           <AreaChart />

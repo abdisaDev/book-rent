@@ -1,99 +1,43 @@
+import { Box, Typography } from '@mui/material';
 import {
-  DataGrid,
-  GridRowsProp,
-  GridColDef,
-  GridToolbar,
-  GridToolbarContainer,
-  GridToolbarQuickFilter,
-} from '@mui/x-data-grid';
-import { Box, Typography, styled } from '@mui/material';
-
-const Toolbar = styled(GridToolbar)(() => ({
-  // Your custom styles here to hide labels
-  '& .MuiDataGrid-toolbarContainer .MuiButtonBase-root': {
-    '& .MuiButton-label': {
-      display: 'none',
-    },
-  },
-}));
-
-function SearchToolBar(props: { title: string }) {
-  return (
-    <GridToolbarContainer
-      sx={{
-        justifyContent: 'space-between',
-        my: '10px',
-        mx: '30px',
-      }}
-    >
-      <Box>
-        <Typography variant='h6' fontWeight='700'>
-          {props.title}
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', columnGap: 2 }}>
-        <Box>
-          <GridToolbarQuickFilter variant='standard' />
-        </Box>
-        <Box>
-          <Toolbar />
-        </Box>
-      </Box>
-    </GridToolbarContainer>
-  );
-}
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+  type MRT_RowData,
+  MRT_ToggleDensePaddingButton,
+} from 'material-react-table';
 
 function Table(props: {
-  rows: GridRowsProp;
-  columns: GridColDef[];
-  isLoading: boolean;
-  errorMessage?: string | undefined;
   title: string;
+  data: MRT_RowData[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: MRT_ColumnDef<any>[];
 }) {
+  const table = useMaterialReactTable({
+    data: props.data,
+    columns: props.columns,
+    initialState: { pagination: { pageSize: 6, pageIndex: 0 } },
+    muiTablePaperProps: {
+      sx: {
+        borderRadius: '20px',
+        px: 3,
+        py: 2.4,
+      },
+    },
+    renderTopToolbar: () => (
+      <Box>
+        <Typography>{props.title}</Typography>
+      </Box>
+    ),
+    renderToolbarInternalActions: ({ table }) => (
+      <Box>
+        <MRT_ToggleDensePaddingButton table={table} />
+      </Box>
+    ),
+  });
   return (
     <Box>
-      <DataGrid
-        sx={{
-          boxShadow: '0 0 20px #E1D9D1',
-          backgroundColor: 'white',
-          borderRadius: '15px',
-          px: 2,
-        }}
-        rows={props.rows}
-        columns={props.columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 6,
-            },
-          },
-          filter: {
-            filterModel: {
-              items: [],
-              quickFilterExcludeHiddenColumns: true,
-            },
-          },
-        }}
-        loading={props.isLoading}
-        slotProps={{
-          loadingOverlay: {
-            variant: 'skeleton',
-            noRowsVariant: 'skeleton',
-          },
-          toolbar: {
-            showQuickFilter: true,
-          },
-        }}
-        slots={{
-          toolbar: () => (
-            <Box>
-              <SearchToolBar title={props.title} />
-            </Box>
-          ),
-        }}
-        pageSizeOptions={[13]}
-        localeText={{ noRowsLabel: props.errorMessage }}
-      />
+      <MaterialReactTable table={table} />
     </Box>
   );
 }
