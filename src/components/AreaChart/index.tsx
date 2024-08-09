@@ -21,6 +21,9 @@ function AreaChart() {
           options={{
             chart: { offsetY: 20 },
             colors: ['#2982FE', '#000000'],
+            legend: {
+              position: 'top',
+            },
             fill: {
               type: ['gradient', 'solid'],
               gradient: {
@@ -79,7 +82,6 @@ function AreaChart() {
             tooltip: {
               enabled: true,
             },
-
             yaxis: {
               show: true,
               min: 0,
