@@ -74,7 +74,6 @@ function Table(props: {
             },
           },
         }}
-        autoHeight
         loading={props.isLoading}
         slotProps={{
           loadingOverlay: {
