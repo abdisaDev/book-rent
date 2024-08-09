@@ -55,7 +55,20 @@ function AreaChart() {
             },
             xaxis: {
               title: { text: 'Earning Summary' },
-              categories: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+              categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec',
+              ],
               axisBorder: {
                 show: false,
               },
@@ -83,12 +96,12 @@ function AreaChart() {
             {
               name: 'red',
               type: 'area',
-              data: [130, 90, 10, 250, 100, 50],
+              data: [130, 90, 10, 250, 100, 50, 32, 41, 6, 12, 76, 12],
             },
             {
               name: 'red',
               type: 'line',
-              data: [100, 80, 70, 50, 10, 150],
+              data: [100, 80, 70, 50, 10, 150, 65, 23, 65, 123, 65, 75],
               color: '#3f3f3f',
             },
           ]}
