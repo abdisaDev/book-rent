@@ -1,27 +1,27 @@
-import { RouteObject } from 'react-router-dom';
-import App from '../App';
-import MainLayout from '../layout/main';
-import AdminDashBoard from '../pages/dashboard';
+import { RouteObject } from "react-router-dom";
+import App from "../App";
+import MainLayout from "../layout/main";
+import AdminDashBoard from "../pages/dashboard/admin";
 
 export const routes: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: 'admin',
+        path: "admin",
         element: <MainLayout />,
         children: [
           {
-            path: 'dashboard',
+            path: "dashboard",
             element: <AdminDashBoard />,
           },
           {
-            path: 'books',
+            path: "books",
             element: <h2>Child</h2>,
           },
           {
-            path: 'books',
+            path: "books",
             element: <h2>Child</h2>,
           },
         ],
