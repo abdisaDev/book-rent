@@ -3,44 +3,117 @@ import Statistics from '../../components/statistics';
 import Table from '../../components/table';
 import { GridColDef } from '@mui/x-data-grid';
 import AreaChart from '../../components/AreaChart';
+import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'No.', width: 90 },
   {
-    field: 'firstName',
-    headerName: 'First name',
+    field: 'book_number',
+    headerName: 'Book no.',
     flex: 1,
   },
   {
-    field: 'lastName',
-    headerName: 'Last name',
+    field: 'owner',
+    headerName: 'Owner',
     flex: 1,
   },
   {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
+    field: 'status',
+    headerName: 'Status',
+    renderCell: (params) => (
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+        }}
+      >
+        <FiberManualRecordIcon
+          color={params.row.status === 'Rented' ? 'error' : 'primary'}
+          sx={{
+            border: `2px solid ${
+              params.row.status === 'Rented' ? ' #D32F2F' : ' #1976D2'
+            }`,
+            borderRadius: '50%',
+            fontSize: '20px',
+          }}
+        />{' '}
+        {params.row.status}
+      </Box>
+    ),
     flex: 1,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
+    field: 'price',
+    headerName: 'Price',
     flex: 1,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
   },
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  {
+    id: 1,
+    book_number: 'Snow',
+    owner: 'Jon',
+    status: 'Rented',
+    price: '200 Birr',
+  },
+  {
+    id: 2,
+    book_number: 'Lannister',
+    owner: 'Cersei',
+    status: 'Rented',
+    price: '200 Birr',
+  },
+  {
+    id: 3,
+    book_number: 'Lannister',
+    owner: 'Jaime',
+    status: 'Rented',
+    price: '200 Birr',
+  },
+  {
+    id: 4,
+    book_number: 'Stark',
+    owner: 'Arya',
+    status: 'Free',
+    price: '200 Birr',
+  },
+  {
+    id: 5,
+    book_number: 'Targaryen',
+    owner: 'Daenerys',
+    status: 'Free',
+    price: '200 Birr',
+  },
+  {
+    id: 6,
+    book_number: 'Melisandre',
+    owner: 'Abdisa',
+    status: 'Free',
+    price: '200 Birr',
+  },
+  {
+    id: 7,
+    book_number: 'Clifford',
+    owner: 'Ferrara',
+    status: 'Free',
+    price: '200 Birr',
+  },
+  {
+    id: 8,
+    book_number: 'Frances',
+    owner: 'Rossini',
+    status: 'Free',
+    price: '200 Birr',
+  },
+  {
+    id: 9,
+    book_number: 'Roxie',
+    owner: 'Harvey',
+    status: 'Free',
+    price: '200 Birr',
+  },
 ];
 function AdminDashBoard() {
   return (

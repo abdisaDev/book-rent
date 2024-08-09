@@ -17,8 +17,9 @@ function AreaChart() {
         }}
       >
         <Chart
-          height={260}
+          height={261}
           options={{
+            chart: { offsetY: 20 },
             colors: ['#2982FE', '#000000'],
             fill: {
               type: ['gradient', 'solid'],
@@ -54,7 +55,6 @@ function AreaChart() {
               enabled: false,
             },
             xaxis: {
-              title: { text: 'Earning Summary' },
               categories: [
                 'Jan',
                 'Feb',
@@ -102,7 +102,7 @@ function AreaChart() {
               name: 'red',
               type: 'line',
               data: [100, 80, 70, 50, 10, 150, 65, 23, 65, 123, 65, 75],
-              color: '#3f3f3f',
+              color: '#B2B2BA',
             },
           ]}
         />
