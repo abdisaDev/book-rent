@@ -46,24 +46,27 @@ function AreaChart() {
             },
             stroke: {
               colors: ['#2982FE'],
-              lineCap: 'round',
               curve: 'smooth',
               width: 2,
-              dashArray: [0, 8],
+              dashArray: [0, 5],
             },
             dataLabels: {
               enabled: false,
             },
             xaxis: {
+              title: { text: 'Earning Summary' },
               categories: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
               axisBorder: {
                 show: false,
               },
-              title: { text: 'Earning Summary' },
+              crosshairs: {
+                show: false,
+              },
             },
             tooltip: {
               enabled: true,
             },
+
             yaxis: {
               show: true,
               min: 0,
