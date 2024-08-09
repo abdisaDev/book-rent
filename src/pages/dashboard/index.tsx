@@ -67,7 +67,7 @@ function AdminDashBoard() {
             title='Live Book Status'
           />
         </Box>
-        <Box sx={{ ml: '20px' }}>
+        <Box>
           <AreaChart />
         </Box>
       </Box>
