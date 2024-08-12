@@ -35,7 +35,6 @@ function SignUpForm() {
 
   const mutation = useMutation({
     mutationFn: (registrationPayload: SignUpFormType) => {
-      console.log(registrationPayload);
       return registerUser(registrationPayload);
     },
   });
@@ -44,9 +43,9 @@ function SignUpForm() {
     <Box>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={(values, { resetForm }) => {
           mutation.mutate(values);
+          resetForm();
         }}
         validationSchema={toFormikValidationSchema(formSchema)}
       >

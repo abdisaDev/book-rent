@@ -4,7 +4,7 @@ import { SignUpFormType } from '../types';
 const useRegisterUser = async (registrationPayload: SignUpFormType) => {
   return await axios
     .post(`${import.meta.env.VITE_ENDPOINT_ADDR}/users/register`, {
-      registrationPayload,
+      ...registrationPayload,
     })
     .then(async (response) => {
       console.log(response);
