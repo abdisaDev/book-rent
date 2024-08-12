@@ -1,6 +1,6 @@
 import { Box, Paper, Typography } from '@mui/material';
 
-function AppBar() {
+function AppBar(props: { title: string }) {
   return (
     <Box>
       <Paper
@@ -12,7 +12,7 @@ function AppBar() {
         elevation={0}
       >
         <Typography>
-          <span style={{ fontWeight: 'bolder' }}>Admin</span>/
+          <span style={{ fontWeight: 'bolder' }}>Admin</span>/{props.title}
         </Typography>
       </Paper>
     </Box>

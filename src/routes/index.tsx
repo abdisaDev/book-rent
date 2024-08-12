@@ -3,14 +3,15 @@ import App from '../App';
 import MainLayout from '../layout/main';
 import AdminDashBoard from '../pages/dashboard';
 import SignUp from '../pages/auth/signup';
+import Owners from '../pages/owners';
 
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <SignUp />,
+    element: <App />,
     children: [
       {
-        path: 'admin',
+        path: 'app',
         element: <MainLayout />,
         children: [
           {
@@ -18,8 +19,8 @@ export const routes: RouteObject[] = [
             element: <AdminDashBoard />,
           },
           {
-            path: 'books',
-            element: <h2>Child</h2>,
+            path: 'owners',
+            element: <Owners />,
           },
           {
             path: 'books',

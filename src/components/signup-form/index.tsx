@@ -162,12 +162,7 @@ function SignUpForm() {
                 </label>
               </Box>
               <Box>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  fullWidth
-                  disableElevation
-                >
+                <Button type='submit' variant='contained' fullWidth>
                   Sign Up
                 </Button>
               </Box>

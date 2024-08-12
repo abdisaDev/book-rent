@@ -6,7 +6,6 @@ function Statistics() {
   return (
     <Box
       sx={{
-        my: '20px',
         width: '300px',
         height: '100%',
       }}

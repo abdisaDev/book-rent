@@ -10,7 +10,7 @@ function MainLayout() {
         sx={{
           display: 'flex',
           height: '100vh',
-          width: '98vw',
+          width: '100vw',
           p: 2,
         }}
       >
@@ -19,9 +19,9 @@ function MainLayout() {
         </Box>
         <Box sx={{ ml: '20px', width: '100%' }}>
           <Box>
-            <AppBar />
+            <AppBar title='Dashboard' />
           </Box>
-          <Box>
+          <Box sx={{ pt: 2 }}>
             <Outlet />
           </Box>
         </Box>

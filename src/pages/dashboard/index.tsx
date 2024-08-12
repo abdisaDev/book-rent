@@ -5,7 +5,6 @@ import AreaChart from '../../components/AreaChart';
 import { useMemo } from 'react';
 import { type MRT_ColumnDef } from 'material-react-table';
 interface BookStatus {
-  id: number;
   book_number: string;
   owner: string;
   status: string;
@@ -14,63 +13,54 @@ interface BookStatus {
 
 const data: BookStatus[] = [
   {
-    id: 1,
     book_number: 'Snow',
     owner: 'Jon',
     status: 'Rented',
     price: '200 Birr',
   },
   {
-    id: 2,
     book_number: 'Lannister',
     owner: 'Cersei',
     status: 'Rented',
     price: '200 Birr',
   },
   {
-    id: 3,
     book_number: 'Lannister',
     owner: 'Jaime',
     status: 'Rented',
     price: '200 Birr',
   },
   {
-    id: 4,
     book_number: 'Stark',
     owner: 'Arya',
     status: 'Free',
     price: '200 Birr',
   },
   {
-    id: 5,
     book_number: 'Targaryen',
     owner: 'Daenerys',
     status: 'Free',
     price: '200 Birr',
   },
   {
-    id: 6,
     book_number: 'Melisandre',
     owner: 'Abdisa',
     status: 'Free',
     price: '200 Birr',
   },
   {
-    id: 7,
     book_number: 'Clifford',
     owner: 'Ferrara',
     status: 'Free',
     price: '200 Birr',
   },
   {
-    id: 8,
     book_number: 'Frances',
     owner: 'Rossini',
     status: 'Free',
     price: '200 Birr',
   },
   {
-    id: 9,
     book_number: 'Roxie',
     owner: 'Harvey',
     status: 'Free',
@@ -81,10 +71,6 @@ const data: BookStatus[] = [
 function AdminDashBoard() {
   const columns = useMemo<MRT_ColumnDef<BookStatus>[]>(
     () => [
-      {
-        accessorKey: 'id',
-        header: 'No.',
-      },
       {
         accessorKey: 'book_number',
         header: 'Book No.',
@@ -122,11 +108,15 @@ function AdminDashBoard() {
           flexDirection: 'column',
           width: '90%',
           ml: '20px',
-          mt: '20px',
         }}
       >
         <Box>
-          <Table columns={columns} data={data} title='Live Book Status' />
+          <Table
+            columns={columns}
+            data={data}
+            title='Live Book Status'
+            pageSize={6}
+          />
         </Box>
         <Box>
           <AreaChart />

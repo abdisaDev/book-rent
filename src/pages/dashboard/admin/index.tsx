@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import Statistics from "../../../components/statistics";
-import Table from "../../../components/table";
-import AreaChart from "../../../components/AreaChart";
-import { useMemo } from "react";
-import { type MRT_ColumnDef } from "material-react-table";
-import { FiberManualRecord as FiberManualRecordIcon } from "@mui/icons-material";
+import { Box, Typography } from '@mui/material';
+import Statistics from '../../../components/statistics';
+import Table from '../../../components/table';
+import AreaChart from '../../../components/AreaChart';
+import { useMemo } from 'react';
+import { type MRT_ColumnDef } from 'material-react-table';
+import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
 
 interface BookStatus {
   id: number;
@@ -17,66 +17,66 @@ interface BookStatus {
 const data: BookStatus[] = [
   {
     id: 1,
-    book_number: "Snow",
-    owner: "Jon",
-    status: "Rented",
-    price: "200 Birr",
+    book_number: 'Snow',
+    owner: 'Jon',
+    status: 'Rented',
+    price: '200 Birr',
   },
   {
     id: 2,
-    book_number: "Lannister",
-    owner: "Cersei",
-    status: "Rented",
-    price: "200 Birr",
+    book_number: 'Lannister',
+    owner: 'Cersei',
+    status: 'Rented',
+    price: '200 Birr',
   },
   {
     id: 3,
-    book_number: "Lannister",
-    owner: "Jaime",
-    status: "Rented",
-    price: "200 Birr",
+    book_number: 'Lannister',
+    owner: 'Jaime',
+    status: 'Rented',
+    price: '200 Birr',
   },
   {
     id: 4,
-    book_number: "Stark",
-    owner: "Arya",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Stark',
+    owner: 'Arya',
+    status: 'Free',
+    price: '200 Birr',
   },
   {
     id: 5,
-    book_number: "Targaryen",
-    owner: "Daenerys",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Targaryen',
+    owner: 'Daenerys',
+    status: 'Free',
+    price: '200 Birr',
   },
   {
     id: 6,
-    book_number: "Melisandre",
-    owner: "Abdisa",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Melisandre',
+    owner: 'Abdisa',
+    status: 'Free',
+    price: '200 Birr',
   },
   {
     id: 7,
-    book_number: "Clifford",
-    owner: "Ferrara",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Clifford',
+    owner: 'Ferrara',
+    status: 'Free',
+    price: '200 Birr',
   },
   {
     id: 8,
-    book_number: "Frances",
-    owner: "Rossini",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Frances',
+    owner: 'Rossini',
+    status: 'Free',
+    price: '200 Birr',
   },
   {
     id: 9,
-    book_number: "Roxie",
-    owner: "Harvey",
-    status: "Free",
-    price: "200 Birr",
+    book_number: 'Roxie',
+    owner: 'Harvey',
+    status: 'Free',
+    price: '200 Birr',
   },
 ];
 
@@ -84,25 +84,25 @@ function AdminDashBoard() {
   const columns = useMemo<MRT_ColumnDef<BookStatus>[]>(
     () => [
       {
-        accessorKey: "id",
-        header: "No.",
+        accessorKey: 'id',
+        header: 'No.',
       },
       {
-        accessorKey: "book_number",
-        header: "Book No.",
+        accessorKey: 'book_number',
+        header: 'Book No.',
       },
       {
-        accessorKey: "owner",
-        header: "Owner",
+        accessorKey: 'owner',
+        header: 'Owner',
         Cell: ({ cell }) => {
           return (
-            <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1 }}>
               <Box>
                 <img
-                  src="https://avatars.githubusercontent.com/u/139908919?v=4"
-                  alt="Abdisa Dev"
+                  src='https://avatars.githubusercontent.com/u/139908919?v=4'
+                  alt='Abdisa Dev'
                   height={30}
-                  style={{ borderRadius: "50%" }}
+                  style={{ borderRadius: '50%' }}
                 />
               </Box>
               <Box>
@@ -113,27 +113,27 @@ function AdminDashBoard() {
         },
       },
       {
-        accessorKey: "status",
-        header: "Status",
+        accessorKey: 'status',
+        header: 'Status',
         Cell: ({ cell }) => {
           console.log(cell.getValue());
           return (
-            <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1 }}>
               <Box>
                 <FiberManualRecordIcon
                   color={
-                    String(cell.getValue())!.toLowerCase() === "rented"
-                      ? "error"
-                      : "primary"
+                    String(cell.getValue())!.toLowerCase() === 'rented'
+                      ? 'error'
+                      : 'primary'
                   }
                   sx={{
                     border: `2px solid ${
-                      String(cell.getValue())!.toLowerCase() === "rented"
-                        ? "#D32F2F"
-                        : "#1976D2"
+                      String(cell.getValue())!.toLowerCase() === 'rented'
+                        ? '#D32F2F'
+                        : '#1976D2'
                     }`,
-                    borderRadius: "50%",
-                    fontSize: "20px",
+                    borderRadius: '50%',
+                    fontSize: '20px',
                   }}
                 />
               </Box>
@@ -145,8 +145,8 @@ function AdminDashBoard() {
         },
       },
       {
-        accessorKey: "price",
-        header: "Price",
+        accessorKey: 'price',
+        header: 'Price',
       },
     ],
     []
@@ -154,22 +154,26 @@ function AdminDashBoard() {
 
   return (
     <Box
-      sx={{ height: "87vh", display: "flex", justifyContent: "space-between" }}
+      sx={{ height: '87vh', display: 'flex', justifyContent: 'space-between' }}
     >
-      <Box sx={{ height: "100%" }}>
+      <Box sx={{ height: '100%' }}>
         <Statistics />
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "90%",
-          ml: "20px",
-          mt: "20px",
+          display: 'flex',
+          flexDirection: 'column',
+          width: '90%',
+          ml: '20px',
         }}
       >
         <Box>
-          <Table columns={columns} data={data} title="Live Book Status" />
+          <Table
+            columns={columns}
+            data={data}
+            title='Live Book Status'
+            pageSize={5}
+          />
         </Box>
         <Box>
           <AreaChart />
