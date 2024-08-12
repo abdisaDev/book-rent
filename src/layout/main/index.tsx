@@ -9,7 +9,9 @@ function MainLayout() {
       <Box
         sx={{
           display: 'flex',
-          height: '97vh',
+          height: '100vh',
+          width: '98vw',
+          p: 2,
         }}
       >
         <Box>

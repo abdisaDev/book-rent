@@ -5,8 +5,9 @@ function App() {
   return (
     <Box
       sx={{
-        p: '12px',
+        width: '100vw',
         backgroundColor: '#EFF1FE',
+        overflow: 'hidden',
       }}
     >
       <Outlet />
