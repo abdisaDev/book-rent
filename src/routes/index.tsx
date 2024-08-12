@@ -7,7 +7,7 @@ import SignUp from '../pages/auth/signup';
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <App />,
+    element: <SignUp />,
     children: [
       {
         path: 'admin',

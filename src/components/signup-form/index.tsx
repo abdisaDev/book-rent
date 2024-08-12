@@ -3,22 +3,23 @@ import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { SignUpFormType } from '../../types';
+import useRegisterUser from '../../hooks/registerUser';
+import { useMutation } from '@tanstack/react-query';
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-  phone_number: z.string(),
-  confirm_password: z.string(),
-  location: z.string(),
-});
-
-interface SignUpFormType {
-  email: string;
-  password: string;
-  phone_number: string;
-  confirm_password: string;
-  location: string;
-}
+const formSchema = z
+  .object({
+    email: z.string({ message: 'Required' }).email(),
+    password: z.string({ message: 'Required' }),
+    phone_number: z.string({ message: 'Required' }),
+    confirm_password: z.string({ message: 'Required' }),
+    location: z.string({ message: 'Required' }),
+    aggrement: z.boolean({ message: 'Please Accept the Terms and Conditions' }),
+  })
+  .refine((schema) => schema.password === schema.confirm_password, {
+    path: ['confirm_password'],
+    message: 'Passwords do not match',
+  });
 
 const initialValues: SignUpFormType = {
   email: '',
@@ -26,17 +27,37 @@ const initialValues: SignUpFormType = {
   confirm_password: '',
   location: '',
   phone_number: '',
+  aggrement: false,
 };
 
 function SignUpForm() {
+  const registerUser = useRegisterUser;
+
+  const mutation = useMutation({
+    mutationFn: (registrationPayload: SignUpFormType) => {
+      console.log(registrationPayload);
+      return registerUser(registrationPayload);
+    },
+  });
+
   return (
     <Box>
       <Formik
         initialValues={initialValues}
-        onSubmit={() => {}}
+        onSubmit={(values) => {
+          console.log(values);
+          mutation.mutate(values);
+        }}
         validationSchema={toFormikValidationSchema(formSchema)}
       >
-        {({ handleChange, handleBlur, handleSubmit }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
           <Form onSubmit={handleSubmit}>
             <Box
               sx={{
@@ -52,6 +73,9 @@ function SignUpForm() {
                   type='email'
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.email}
+                  error={Boolean(errors.email && touched.email)}
+                  helperText={<span>{touched.email && errors.email}</span>}
                   fullWidth
                 />
               </Box>
@@ -62,6 +86,11 @@ function SignUpForm() {
                   type='password'
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.password}
+                  error={Boolean(errors.password && touched.password)}
+                  helperText={
+                    <span>{touched.password && errors.password}</span>
+                  }
                   fullWidth
                 />
               </Box>
@@ -72,6 +101,15 @@ function SignUpForm() {
                   type='password'
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.confirm_password}
+                  error={Boolean(
+                    errors.confirm_password && touched.confirm_password
+                  )}
+                  helperText={
+                    <span>
+                      {touched.confirm_password && errors.confirm_password}
+                    </span>
+                  }
                   fullWidth
                 />
               </Box>
@@ -81,6 +119,11 @@ function SignUpForm() {
                   label='Location'
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.location}
+                  error={Boolean(errors.location && touched.location)}
+                  helperText={
+                    <span>{touched.location && errors.location}</span>
+                  }
                   fullWidth
                 />
               </Box>
@@ -90,17 +133,34 @@ function SignUpForm() {
                   label='Phone Number'
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.phone_number}
+                  error={Boolean(errors.phone_number && touched.phone_number)}
+                  helperText={
+                    <span>{touched.phone_number && errors.phone_number}</span>
+                  }
                   fullWidth
                 />
               </Box>
               <Box
                 sx={{
                   display: 'flex',
-                  columnGap: 2,
+                  columnGap: 1,
+                  alignItems: 'center',
                 }}
               >
-                <Input type='checkbox' name='aggrement' />
-                <Typography>I accept the Term and Conditions.</Typography>
+                <Input
+                  type='checkbox'
+                  name='aggrement'
+                  id='aggrement'
+                  value={values.aggrement}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={Boolean(errors.aggrement && touched.aggrement)}
+                />
+                {<span>{touched.aggrement && errors.aggrement}</span>}
+                <label htmlFor='aggrement'>
+                  I accept the Term and Conditions.
+                </label>
               </Box>
               <Box>
                 <Button
