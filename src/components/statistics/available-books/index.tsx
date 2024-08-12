@@ -1,40 +1,40 @@
-import { Box, Chip, Paper, Typography } from '@mui/material';
-import { PieChart } from '@mui/x-charts/PieChart';
+import { Box, Chip, Paper, Typography } from "@mui/material";
+import { PieChart } from "@mui/x-charts/PieChart";
 
 const data = [
-  { id: 0, value: 10, label: 'Fiction', color: 'green' },
-  { id: 1, value: 15, label: 'Self Help', color: 'blue' },
-  { id: 2, value: 20, label: 'Business', color: 'red' },
+  { id: 0, value: 10, label: "Fiction", color: "green" },
+  { id: 1, value: 15, label: "Self Help", color: "blue" },
+  { id: 2, value: 20, label: "Business", color: "red" },
 ];
 
 function Legend() {
   return (
-    <Box display='flex' flexDirection='column' ml={3}>
-      {data.map((item) => (
-        <Box key={item.label} display='flex' alignItems='center' mb={1} pr={7}>
+    <Box display="flex" flexDirection="column" ml={3}>
+      {data.map((item, index) => (
+        <Box key={index} display="flex" alignItems="center" mb={1} pr={7}>
           <Box
-            component='span'
+            component="span"
             sx={{
               width: 15,
               height: 15,
               backgroundColor: item.color,
-              borderRadius: '80%',
+              borderRadius: "80%",
               mr: 1,
             }}
           />
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
+              display: "flex",
+              justifyContent: "space-between",
               columnGap: 8,
               flex: 1,
             }}
           >
-            <Box sx={{ textAlign: 'center' }}>
-              <Typography variant='body2'>{item.label}</Typography>
+            <Box sx={{ textAlign: "center" }}>
+              <Typography variant="body2">{item.label}</Typography>
             </Box>
             <Box>
-              <Typography variant='body2'>{item.value}</Typography>
+              <Typography variant="body2">{item.value}</Typography>
             </Box>
           </Box>
         </Box>
@@ -48,37 +48,37 @@ function AvailableBooksStatstics() {
     <Box>
       <Paper
         sx={{
-          boxShadow: '0 0 10px #E1D9D1A0',
-          borderRadius: '10px',
-          height: '360px',
+          boxShadow: "0 0 10px #E1D9D1A0",
+          borderRadius: "10px",
+          height: "360px",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            pt: '20px',
-            px: '20px',
-            width: '100%',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            pt: "20px",
+            px: "20px",
+            width: "100%",
           }}
         >
-          <Typography fontWeight='bolder'>Available Books</Typography>
+          <Typography fontWeight="bolder">Available Books</Typography>
           <Chip
-            label='Today'
-            size='small'
-            sx={{ borderRadius: '5px', backgroundColor: '#F4F5F7' }}
+            label="Today"
+            size="small"
+            sx={{ borderRadius: "5px", backgroundColor: "#F4F5F7" }}
           />
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <Box>
             <PieChart
-              title='Available Books'
+              title="Available Books"
               series={[
                 {
                   data,

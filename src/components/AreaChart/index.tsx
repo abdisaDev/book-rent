@@ -1,33 +1,34 @@
-import { Box, Paper } from '@mui/material';
-import Chart from 'react-apexcharts';
+import { Box, Paper } from "@mui/material";
+import Chart from "react-apexcharts";
 
 function AreaChart() {
   return (
     <Box
       sx={{
         my: 2,
+        height: "-webkit-fill-available",
       }}
     >
       <Paper
         sx={{
-          borderRadius: '15px',
+          borderRadius: "15px",
           p: 2,
-          boxShadow: '0 0 15px #E1D9D1',
-          position: 'relative',
+          boxShadow: "0 0 15px #E1D9D1",
+          position: "relative",
         }}
       >
         <Chart
           height={261}
           options={{
             chart: { offsetY: 20 },
-            colors: ['#2982FE', '#000000'],
+            colors: ["#2982FE", "#000000"],
             legend: {
-              position: 'top',
+              position: "top",
             },
             fill: {
-              type: ['gradient', 'solid'],
+              type: ["gradient", "solid"],
               gradient: {
-                type: 'vertical',
+                type: "vertical",
                 opacityFrom: 1,
                 opacityTo: 0,
                 stops: [0, 100],
@@ -35,22 +36,22 @@ function AreaChart() {
                   {
                     offset: 0,
                     opacity: 0.2,
-                    color: '#2982FE',
+                    color: "#2982FE",
                   },
                   {
                     offset: 100,
                     opacity: 0,
-                    color: '#2982FE',
+                    color: "#2982FE",
                   },
                 ],
               },
             },
             grid: {
-              borderColor: 'rgba(0,0,0,0)',
+              borderColor: "rgba(0,0,0,0)",
             },
             stroke: {
-              colors: ['#2982FE'],
-              curve: 'smooth',
+              colors: ["#2982FE"],
+              curve: "smooth",
               width: 2,
               dashArray: [0, 5],
             },
@@ -59,18 +60,18 @@ function AreaChart() {
             },
             xaxis: {
               categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec',
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
               ],
               axisBorder: {
                 show: false,
@@ -96,15 +97,15 @@ function AreaChart() {
           }}
           series={[
             {
-              name: 'red',
-              type: 'area',
+              name: "red",
+              type: "area",
               data: [130, 90, 10, 250, 100, 50, 32, 41, 6, 12, 76, 12],
             },
             {
-              name: 'red',
-              type: 'line',
+              name: "red",
+              type: "line",
               data: [100, 80, 70, 50, 10, 150, 65, 23, 65, 123, 65, 75],
-              color: '#B2B2BA',
+              color: "#B2B2BA",
             },
           ]}
         />

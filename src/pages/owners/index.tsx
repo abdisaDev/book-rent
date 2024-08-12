@@ -1,54 +1,74 @@
-import { useQuery } from '@tanstack/react-query';
-import useFetchUser from '../../hooks/fetchUser';
-import { Box, Button, Chip, IconButton, Switch } from '@mui/material';
-import Table from '../../components/table';
-import { useMemo } from 'react';
-import { MRT_ColumnDef } from 'material-react-table';
+import { useQuery } from "@tanstack/react-query";
+import useFetchUser from "../../hooks/fetchUser";
+import { Box, Button, Chip, IconButton, Switch } from "@mui/material";
+import Table from "../../components/table";
+import { useMemo } from "react";
+import { MRT_ColumnDef } from "material-react-table";
 import {
   Check as CheckIcon,
   Close as CloseIcon,
   Visibility as VisibilityIcon,
   Delete as DeleteIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
+import {
+  useUpdateOwnersApproval,
+  useUpdateOwnersStatus,
+} from "../../hooks/updateOwnerStatus";
 
 function Owners() {
+  const updateOwnerStatus = useUpdateOwnersStatus;
+  const updateOwnerApproval = useUpdateOwnersApproval;
+
+  const { data, isSuccess, refetch } = useQuery({
+    queryKey: ["fetch-owners"],
+    queryFn: useFetchUser,
+  });
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: 'owner',
-        header: 'Owner',
+        accessorKey: "name",
+        header: "Owner",
       },
       {
-        accessorKey: 'location',
-        header: 'Location',
+        accessorKey: "books",
+        header: "Upload",
       },
       {
-        accessorKey: 'status',
-        header: 'Status',
+        accessorKey: "location",
+        header: "Location",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
         Cell: ({ cell }) => {
           const value = cell.getValue();
           return (
             <Box>
               <Chip
                 label={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                     {value ? (
-                      <CheckIcon fontSize='small' color='success' />
+                      <CheckIcon fontSize="small" color="success" />
                     ) : (
-                      <CloseIcon fontSize='small' color='error' />
+                      <CloseIcon fontSize="small" color="error" />
                     )}
-                    <Box>{value ? 'Active' : 'Inactive'}</Box>
+                    <Box>{value ? "Active" : "Inactive"}</Box>
                     <Switch
                       checked={Boolean(value)}
-                      color={value ? 'success' : 'error'}
-                      size='small'
+                      color={value ? "success" : "error"}
+                      size="small"
+                      onClick={() => {
+                        updateOwnerStatus({ email: cell.row.original.email });
+                        refetch();
+                      }}
                     />
                   </Box>
                 }
                 sx={{
-                  backgroundColor: value ? '#E6F3E6' : '#FEE2E2',
-                  borderRadius: '10px',
+                  backgroundColor: value ? "#E6F3E6" : "#FEE2E2",
+                  borderRadius: "10px",
                   px: 2,
                 }}
               />
@@ -57,31 +77,40 @@ function Owners() {
         },
       },
       {
-        accessorKey: 'actions',
-        header: 'Actions',
-        Cell: ({ cell }) => (
+        accessorKey: "actions",
+        header: "Actions",
+        Cell: () => (
           <>
             <IconButton>
               <VisibilityIcon />
             </IconButton>
-            <IconButton color='error'>
+            <IconButton color="error">
               <DeleteIcon />
             </IconButton>
           </>
         ),
       },
       {
-        accessorKey: 'status',
-        header: '',
+        accessorKey: "isOwnerApproved",
+        header: "",
         Cell: ({ cell }) => (
           <>
             <Chip
-              label={cell.getValue() ? 'Approved' : 'Approve'}
-              size='small'
+              label={
+                <Button
+                  sx={{ color: "#FFF" }}
+                  onClick={() => {
+                    updateOwnerApproval({ email: cell.row.original.email });
+                    refetch();
+                  }}
+                >
+                  {cell.getValue() ? "Approved" : "Approve"}
+                </Button>
+              }
+              size="small"
               sx={{
-                backgroundColor: cell.getValue() ? '#00ABFF' : '#AFAFAF',
-                color: '#FFF',
-                borderRadius: '5px',
+                backgroundColor: cell.getValue() ? "#00ABFF" : "#AFAFAF",
+                borderRadius: "5px",
               }}
             />
           </>
@@ -91,30 +120,13 @@ function Owners() {
     []
   );
 
-  //   const { data, isSuccess, isLoading, isError } = useQuery({
-  //     queryKey: ['fetch-owners'],
-  //     queryFn: useFetchUser,
-  //   });
-
-  const data = [
-    {
-      id: 2,
-      owner: 'abdisa',
-      password: '123',
-      location: '1',
-      phone_number: '0987813969',
-      role: 'owner',
-      status: true,
-      revenue: 0,
-    },
-  ];
   return (
     <Box>
       <Table
         columns={columns}
-        data={data}
-        title='List Of Owners'
-        pageSize={10}
+        data={isSuccess ? data.data : []}
+        title="List Of Owners"
+        pageSize={9}
       />
     </Box>
   );

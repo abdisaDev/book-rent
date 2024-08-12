@@ -1,32 +1,34 @@
-import { Box, Button, Input, TextField, Typography } from '@mui/material';
-import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
-import { z } from 'zod';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { SignUpFormType } from '../../types';
-import useRegisterUser from '../../hooks/registerUser';
-import { useMutation } from '@tanstack/react-query';
+import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import { Formik, Form } from "formik";
+import { Link } from "react-router-dom";
+import { z } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import { SignUpFormType } from "../../types";
+import useRegisterUser from "../../hooks/registerUser";
+import { useMutation } from "@tanstack/react-query";
 
 const formSchema = z
   .object({
-    email: z.string({ message: 'Required' }).email(),
-    password: z.string({ message: 'Required' }),
-    phone_number: z.string({ message: 'Required' }),
-    confirm_password: z.string({ message: 'Required' }),
-    location: z.string({ message: 'Required' }),
-    aggrement: z.boolean({ message: 'Please Accept the Terms and Conditions' }),
+    name: z.string({ message: "Required" }),
+    email: z.string({ message: "Required" }).email(),
+    password: z.string({ message: "Required" }),
+    phone_number: z.string({ message: "Required" }),
+    confirm_password: z.string({ message: "Required" }),
+    location: z.string({ message: "Required" }),
+    aggrement: z.boolean({ message: "Please Accept the Terms and Conditions" }),
   })
   .refine((schema) => schema.password === schema.confirm_password, {
-    path: ['confirm_password'],
-    message: 'Passwords do not match',
+    path: ["confirm_password"],
+    message: "Passwords do not match",
   });
 
 const initialValues: SignUpFormType = {
-  email: '',
-  password: '',
-  confirm_password: '',
-  location: '',
-  phone_number: '',
+  name: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+  location: "",
+  phone_number: "",
   aggrement: false,
 };
 
@@ -60,16 +62,28 @@ function SignUpForm() {
           <Form onSubmit={handleSubmit}>
             <Box
               sx={{
-                rowGap: '10px',
-                display: 'flex',
-                flexDirection: 'column',
+                rowGap: "10px",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <Box>
                 <TextField
-                  name='email'
-                  label='E-mail'
-                  type='email'
+                  name="name"
+                  label="Name"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                  error={Boolean(errors.name && touched.name)}
+                  helperText={<span>{touched.name && errors.name}</span>}
+                  fullWidth
+                />
+              </Box>
+              <Box>
+                <TextField
+                  name="email"
+                  label="E-mail"
+                  type="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -80,9 +94,9 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='password'
-                  label='Password'
-                  type='password'
+                  name="password"
+                  label="Password"
+                  type="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -95,9 +109,9 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='confirm_password'
-                  label='Confirm Password'
-                  type='password'
+                  name="confirm_password"
+                  label="Confirm Password"
+                  type="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirm_password}
@@ -114,8 +128,8 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='location'
-                  label='Location'
+                  name="location"
+                  label="Location"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.location}
@@ -128,8 +142,8 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='phone_number'
-                  label='Phone Number'
+                  name="phone_number"
+                  label="Phone Number"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.phone_number}
@@ -142,34 +156,34 @@ function SignUpForm() {
               </Box>
               <Box
                 sx={{
-                  display: 'flex',
+                  display: "flex",
                   columnGap: 1,
-                  alignItems: 'center',
+                  alignItems: "center",
                 }}
               >
                 <Input
-                  type='checkbox'
-                  name='aggrement'
-                  id='aggrement'
+                  type="checkbox"
+                  name="aggrement"
+                  id="aggrement"
                   value={values.aggrement}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={Boolean(errors.aggrement && touched.aggrement)}
                 />
                 {<span>{touched.aggrement && errors.aggrement}</span>}
-                <label htmlFor='aggrement'>
+                <label htmlFor="aggrement">
                   I accept the Term and Conditions.
                 </label>
               </Box>
               <Box>
-                <Button type='submit' variant='contained' fullWidth>
+                <Button type="submit" variant="contained" fullWidth>
                   Sign Up
                 </Button>
               </Box>
               <Box>
-                <Typography textAlign='center'>
-                  Already have an account{' '}
-                  <Link to='#' color='primary'>
+                <Typography textAlign="center">
+                  Already have an account{" "}
+                  <Link to="#" color="primary">
                     Login
                   </Link>
                 </Typography>

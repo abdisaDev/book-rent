@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
   type MRT_RowData,
   MRT_ToggleDensePaddingButton,
-} from 'material-react-table';
+} from "material-react-table";
 
 function Table(props: {
   title: string;
@@ -20,7 +20,7 @@ function Table(props: {
     initialState: { pagination: { pageSize: props.pageSize, pageIndex: 0 } },
     muiTablePaperProps: {
       sx: {
-        borderRadius: '15px',
+        borderRadius: "15px",
         px: 3,
         py: 2.4,
       },
@@ -36,7 +36,7 @@ function Table(props: {
       </Box>
     ),
     enableRowNumbers: true,
-    rowNumberDisplayMode: 'original',
+    rowNumberDisplayMode: "original",
   });
   return (
     <Box>

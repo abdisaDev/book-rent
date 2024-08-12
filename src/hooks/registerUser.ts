@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { SignUpFormType } from '../types';
+import axios from "axios";
+import { SignUpFormType } from "../types";
 
 const useRegisterUser = async (registrationPayload: SignUpFormType) => {
   return await axios
@@ -7,7 +7,7 @@ const useRegisterUser = async (registrationPayload: SignUpFormType) => {
       ...registrationPayload,
     })
     .then(async (response) => {
-      console.log(response);
+      return response.data;
     })
     .catch(async (error) => {
       throw new Error(await error);
