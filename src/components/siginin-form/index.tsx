@@ -88,7 +88,7 @@ function SignInForm() {
               <Box>
                 <Typography textAlign="center">
                   Have not an account ?
-                  <Link to="#" color="primary">
+                  <Link to="/auth/register" color="primary">
                     Sign Up
                   </Link>
                 </Typography>

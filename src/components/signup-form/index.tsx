@@ -183,7 +183,7 @@ function SignUpForm() {
               <Box>
                 <Typography textAlign="center">
                   Already have an account{" "}
-                  <Link to="#" color="primary">
+                  <Link to="/auth/login" color="primary">
                     Login
                   </Link>
                 </Typography>
