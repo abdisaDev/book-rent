@@ -6,6 +6,7 @@ import SignUp from "../pages/auth/signup";
 import Owners from "../pages/owners";
 import AuthLayout from "../layout/auth";
 import SignIn from "../pages/auth/signin";
+import BookUploadPage from "../pages/book-upload-page";
 
 export const routes: RouteObject[] = [
   {
@@ -26,7 +27,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: "books",
-            element: <h2>Child</h2>,
+            element: <BookUploadPage />,
           },
         ],
       },

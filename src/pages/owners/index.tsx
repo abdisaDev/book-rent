@@ -138,11 +138,24 @@ function Owners() {
     []
   );
 
+  const customizedData =
+    isSuccess &&
+    data.data.map(({ books, ...user }) => {
+      let totalQuantity = 0;
+      books.map((book) => {
+        const { quantity } = book;
+        totalQuantity += quantity;
+        console.log(book);
+      });
+      return { books: `${totalQuantity} Books`, ...user };
+    });
+
+  console.log(customizedData);
   return (
     <Box>
       <Table
         columns={columns}
-        data={isSuccess ? data.data : []}
+        data={isSuccess ? customizedData : []}
         title="List Of Owners"
         pageSize={10}
         isLoading={isLoading}
