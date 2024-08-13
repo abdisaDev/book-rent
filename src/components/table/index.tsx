@@ -1,10 +1,16 @@
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
   type MRT_RowData,
   MRT_ToggleDensePaddingButton,
+  MRT_ToggleFullScreenButton,
+  MRT_ColumnPinningButtons,
+  MRT_ToggleFiltersButton,
+  MRT_ToggleGlobalFilterButton,
+  MRT_ShowHideColumnsButton,
+  MRT_ToolbarInternalButtons,
 } from "material-react-table";
 
 function Table(props: {
@@ -30,13 +36,21 @@ function Table(props: {
       },
     },
     renderTopToolbar: () => (
-      <Box>
-        <Typography>{props.title}</Typography>
-      </Box>
-    ),
-    renderToolbarInternalActions: ({ table }) => (
-      <Box>
-        <MRT_ToggleDensePaddingButton table={table} />
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", mx: 2, my: 1 }}
+      >
+        <Box>
+          <Typography variant="h6" fontWeight="bold">
+            Live Book Status
+          </Typography>
+        </Box>
+        <Box>
+          <MRT_ToggleGlobalFilterButton table={table} size="small" />
+          <MRT_ToggleFiltersButton table={table} size="small" />
+          <MRT_ToggleDensePaddingButton table={table} size="small" />
+          <MRT_ToggleFullScreenButton table={table} size="small" />
+          <MRT_ShowHideColumnsButton table={table} size="small" />
+        </Box>
       </Box>
     ),
     enableRowNumbers: true,
