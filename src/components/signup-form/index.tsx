@@ -1,6 +1,6 @@
 import { Box, Button, Input, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { SignUpFormType } from "../../types";
@@ -12,7 +12,12 @@ const formSchema = z
     name: z.string({ message: "Required" }),
     email: z.string({ message: "Required" }).email(),
     password: z.string({ message: "Required" }),
-    phone_number: z.string({ message: "Required" }),
+    phone_number: z
+      .string({ message: "Required" })
+      .regex(/^(0|\+251|251)(9|7)[0-9]{8}$/, {
+        message:
+          "Invalid Phone Number, The phone number has to be either safari or ethio telecom",
+      }),
     confirm_password: z.string({ message: "Required" }),
     location: z.string({ message: "Required" }),
     aggrement: z.boolean({ message: "Please Accept the Terms and Conditions" }),
@@ -41,6 +46,8 @@ function SignUpForm() {
     },
   });
 
+  const navigate = useNavigate();
+
   return (
     <Box>
       <Formik
@@ -48,6 +55,7 @@ function SignUpForm() {
         onSubmit={(values, { resetForm }) => {
           mutation.mutate(values);
           resetForm();
+          navigate("/auth/login");
         }}
         validationSchema={toFormikValidationSchema(formSchema)}
       >
