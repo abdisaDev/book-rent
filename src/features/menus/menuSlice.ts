@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
+import type { PayloadAction, Slice } from "@reduxjs/toolkit";
 
 interface MenuList {
   title: string;
@@ -8,14 +8,14 @@ interface MenuList {
 
 // Define the initial state using that type
 const initialState: MenuList = {
-  title: "",
+  title: "DashBoard",
 };
 
-export const menuSlice = createSlice({
-  name: "menu",
+export const menuSlice: Slice<MenuList> = createSlice({
+  name: "menulist",
   initialState,
   reducers: {
-    setTitle: (state, action) => {
+    setTitle: (state, action: PayloadAction<string>) => {
       state.title = action.payload;
     },
   },
@@ -23,6 +23,6 @@ export const menuSlice = createSlice({
 
 export const { setTitle } = menuSlice.actions;
 
-export const selectMenu = (state: RootState) => state.menu.title;
+export const menuSelector = (state: RootState) => state.menusDetail;
 
 export default menuSlice.reducer;

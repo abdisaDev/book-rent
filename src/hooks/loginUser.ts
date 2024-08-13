@@ -6,7 +6,7 @@ const useLoginUser = async (loginPayload: SignInFormType) => {
     .post(`${import.meta.env.VITE_ENDPOINT_ADDR}/auth/login`, loginPayload)
     .then(async (response) => {
       localStorage.setItem("access_token", response.data.access_token);
-      console.log(response.data);
+
       return response.data;
     })
     .catch(async (error) => {

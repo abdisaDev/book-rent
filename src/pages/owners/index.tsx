@@ -26,14 +26,12 @@ function Owners() {
 
   const updateStatusMutation = useMutation({
     mutationFn: (userEmail: { email: string }) => {
-      console.log("clicked status");
       return updateOwnerStatus(userEmail);
     },
   });
 
   const updateApprovalMutation = useMutation({
     mutationFn: (userEmail: { email: string }) => {
-      console.log("clicked approval");
       return updateOwnerApproval(userEmail);
     },
   });
@@ -142,15 +140,14 @@ function Owners() {
     isSuccess &&
     data.data.map(({ books, ...user }) => {
       let totalQuantity = 0;
-      books.map((book) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      books.map((book: { quantity: any }) => {
         const { quantity } = book;
         totalQuantity += quantity;
-        console.log(book);
       });
       return { books: `${totalQuantity} Books`, ...user };
     });
 
-  console.log(customizedData);
   return (
     <Box>
       <Table

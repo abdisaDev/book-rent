@@ -1,8 +1,13 @@
 import { Box, Button } from "@mui/material";
 import { menuLists } from "../../../menus/menusLists";
 import { useState } from "react";
+import { setTitle } from "../../../features/menus/menuSlice";
+
+import { useAppDispatch } from "../../../app/hooks";
 
 function SideBarMenu() {
+  const dispatch = useAppDispatch();
+
   const [clickedMenu, setClickedMenu] = useState(0);
   return (
     <Box
@@ -17,6 +22,7 @@ function SideBarMenu() {
           <Button
             key={index}
             onClick={() => {
+              dispatch(setTitle(menuList.label));
               setClickedMenu(menuList.index);
             }}
             sx={{

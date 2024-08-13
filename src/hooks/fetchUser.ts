@@ -8,7 +8,6 @@ const useFetchUser = async () => {
       },
     })
     .then(async (response) => {
-      console.log(response);
       return response.data;
     })
     .catch(async (error) => {
