@@ -11,13 +11,15 @@ const formSchema = z
   .object({
     name: z.string({ message: "Required" }),
     email: z.string({ message: "Required" }).email(),
-    password: z.string({ message: "Required" }),
     phone_number: z
       .string({ message: "Required" })
       .regex(/^(0|\+251|251)(9|7)[0-9]{8}$/, {
         message:
           "Invalid Phone Number, The phone number has to be either safari or ethio telecom",
       }),
+    password: z
+      .string({ message: "Required" })
+      .min(8, "Password must be at least 8 characters long"),
     confirm_password: z.string({ message: "Required" }),
     location: z.string({ message: "Required" }),
     aggrement: z.boolean({ message: "Please Accept the Terms and Conditions" }),
