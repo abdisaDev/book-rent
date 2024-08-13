@@ -127,6 +127,11 @@ function AdminDashBoard() {
       {
         accessorKey: "price",
         header: "Price",
+        Cell: ({ cell }) => (
+          <Box>
+            <Typography>{String(cell.getValue())} Birr</Typography>
+          </Box>
+        ),
       },
     ],
     []

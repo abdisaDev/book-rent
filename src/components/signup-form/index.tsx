@@ -57,7 +57,7 @@ function SignUpForm() {
         onSubmit={(values, { resetForm }) => {
           mutation.mutate(values);
           resetForm();
-          navigate("/auth/login");
+          if (mutation.isSuccess) navigate("/auth/login");
         }}
         validationSchema={toFormikValidationSchema(formSchema)}
       >

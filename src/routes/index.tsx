@@ -7,7 +7,7 @@ import Owners from "../pages/owners";
 import AuthLayout from "../layout/auth";
 import SignIn from "../pages/auth/signin";
 import BookUploadPage from "../pages/book-upload-page";
-import PopupModal from "../components/popup-modal";
+import Books from "../pages/books";
 
 export const routes: RouteObject[] = [
   {
@@ -28,11 +28,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: "books",
-            element: <BookUploadPage />,
-          },
-          {
-            path: "modal",
-            element: <PopupModal />,
+            element: <Books />,
           },
         ],
       },

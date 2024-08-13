@@ -15,7 +15,13 @@ function AppBar() {
         elevation={0}
       >
         <Typography>
-          <span style={{ fontWeight: "bolder" }}>Admin</span>/{menuList.title}
+          <span style={{ fontWeight: "bolder" }}>
+            {JSON.parse(localStorage.getItem("user")!).role.toLowerCase() !==
+            "owner"
+              ? "Admin"
+              : "Owner"}
+          </span>
+          /{menuList.title}
         </Typography>
       </Paper>
     </Box>

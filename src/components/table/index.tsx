@@ -41,7 +41,7 @@ function Table(props: {
       >
         <Box>
           <Typography variant="h6" fontWeight="bold">
-            Live Book Status
+            {props.title}
           </Typography>
         </Box>
         <Box>

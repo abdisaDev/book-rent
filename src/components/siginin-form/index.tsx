@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { SignInFormType } from "../../types";
@@ -19,6 +19,7 @@ const initialValues: SignInFormType = {
 
 function SignInForm() {
   const loginUser = useLoginUser;
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: (loginPayload: SignInFormType) => {
@@ -81,7 +82,14 @@ function SignInForm() {
                 />
               </Box>
               <Box>
-                <Button type="submit" variant="contained" fullWidth>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  onClick={() => {
+                    if (mutation.isSuccess) navigate("/app/dashboard");
+                  }}
+                >
                   LogIn
                 </Button>
               </Box>
