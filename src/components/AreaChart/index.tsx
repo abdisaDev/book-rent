@@ -20,10 +20,22 @@ function AreaChart() {
         <Chart
           height={261}
           options={{
-            chart: { offsetY: 20 },
+            title: {
+              text: "Earning Summery",
+              align: "left",
+              floating: false,
+              offsetY: 30,
+              style: {
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#263238",
+              },
+            },
+            chart: { toolbar: { show: false } },
             colors: ["#2982FE", "#000000"],
             legend: {
               position: "top",
+              horizontalAlign: "right",
             },
             fill: {
               type: ["gradient", "solid"],
@@ -48,6 +60,10 @@ function AreaChart() {
             },
             grid: {
               borderColor: "#E9E9EB",
+              padding: {
+                left: 30,
+                right: 30,
+              },
               xaxis: {
                 lines: {
                   show: true,
@@ -70,20 +86,7 @@ function AreaChart() {
               enabled: false,
             },
             xaxis: {
-              categories: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-              ],
+              categories: ["Mar", "Apr", "May", "Jun", "Jul", "Aug"],
               axisBorder: {
                 show: false,
               },
@@ -92,6 +95,7 @@ function AreaChart() {
             tooltip: {
               enabled: true,
             },
+
             yaxis: {
               show: true,
               min: 0,
@@ -106,14 +110,14 @@ function AreaChart() {
           }}
           series={[
             {
-              name: "red",
+              name: "Last 6 Months",
               type: "area",
-              data: [130, 90, 10, 250, 100, 50, 32, 41, 6, 12, 76, 12],
+              data: [130, 90, 10, 250, 100, 50],
             },
             {
-              name: "red",
+              name: "Same Period last Year",
               type: "line",
-              data: [100, 80, 70, 50, 10, 150, 65, 23, 65, 123, 65, 75],
+              data: [100, 80, 70, 50, 10, 150],
               color: "#B2B2BA",
             },
           ]}
