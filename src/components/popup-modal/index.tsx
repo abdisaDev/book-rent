@@ -1,13 +1,11 @@
-import { Box, Dialog, DialogContent, TextField } from "@mui/material";
+import { Box, Dialog, DialogContent } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   modalSelector,
   setIsOpenStatus,
 } from "../../features/modal/modalSlice";
-import { clickedRowSelector } from "../../features/clickedRow/clickedRowSlice";
 
-function PopupModal() {
-  const clickedRow = useAppSelector(clickedRowSelector);
+function PopupModal(props: { children: JSX.Element }) {
   const isOpenSelector = useAppSelector(modalSelector);
   const dispatch = useAppDispatch();
 
@@ -16,6 +14,7 @@ function PopupModal() {
       dispatch(setIsOpenStatus(false));
     }
   };
+
   return (
     <Box>
       <Dialog open={isOpenSelector.isOpen} onClose={handleOnClose}>
@@ -29,52 +28,7 @@ function PopupModal() {
             justifyContent: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              width: "100%",
-              px: 2,
-            }}
-          >
-            <Box>
-              <TextField
-                variant="outlined"
-                label="Name"
-                fullWidth
-                disabled
-                value={clickedRow.row.name}
-              />
-            </Box>
-            <Box>
-              <TextField
-                variant="outlined"
-                label="Email Address"
-                fullWidth
-                disabled
-                value={clickedRow.row.email}
-              />
-            </Box>
-            <Box>
-              <TextField
-                variant="outlined"
-                label="Location"
-                fullWidth
-                disabled
-                value={clickedRow.row.location}
-              />
-            </Box>
-            <Box>
-              <TextField
-                variant="outlined"
-                label="Phone Number"
-                fullWidth
-                disabled
-                value={clickedRow.row.phone_number}
-              />
-            </Box>
-          </Box>
+          {props.children}
         </DialogContent>
       </Dialog>
     </Box>

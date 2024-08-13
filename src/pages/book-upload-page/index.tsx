@@ -10,10 +10,14 @@ import {
 } from "@mui/material";
 import { Upload as UploadIcon } from "@mui/icons-material";
 import { HTMLAttributes, JSXElementConstructor } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { setIsOpenStatus } from "../../features/modal/modalSlice";
+import PopupModal from "../../components/popup-modal";
 
 function PopperComponent(props?: {
   children: JSX.Element;
 }): JSXElementConstructor<HTMLAttributes<HTMLElement>> | undefined {
+  const dispatch = useAppDispatch();
   return (
     <Paper>
       <Box>{props?.children}</Box>
@@ -21,7 +25,14 @@ function PopperComponent(props?: {
         <Divider />
       </Box>
       <Box>
-        <Button fullWidth>Add Book</Button>
+        <Button
+          fullWidth
+          onClick={() => {
+            dispatch(setIsOpenStatus(true));
+          }}
+        >
+          Add Book
+        </Button>
       </Box>
     </Paper>
   );
@@ -63,7 +74,7 @@ function BookUploadPage() {
                     <PopperComponent>
                       <Chip
                         {...tagProps}
-                        key={key}
+                        key={index}
                         variant="outlined"
                         label={option.title}
                         size="small"
