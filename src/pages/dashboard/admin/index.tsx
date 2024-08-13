@@ -14,6 +14,8 @@ interface BookStatus {
   price: string;
 }
 
+// const { books: data } = JSON.parse(localStorage.getItem("user")!);
+
 const data: BookStatus[] = [
   {
     id: 1,
@@ -153,7 +155,11 @@ function AdminDashBoard() {
 
   return (
     <Box
-      sx={{ height: "87vh", display: "flex", justifyContent: "space-between" }}
+      sx={{
+        height: "87vh",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
     >
       <Box sx={{ height: "100%" }}>
         <Statistics />

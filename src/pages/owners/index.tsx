@@ -16,7 +16,6 @@ import {
 } from "../../hooks/updateOwnerStatus";
 import { useAppDispatch } from "../../app/hooks";
 import { setIsOpenStatus } from "../../features/modal/modalSlice";
-import PopupModal from "../../components/popup-modal";
 import { setClickedRow } from "../../features/clickedRow/clickedRowSlice";
 import UserDataDisplay from "../../components/popup-modal/user-data";
 

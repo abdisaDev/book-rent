@@ -41,7 +41,7 @@ function PopperComponent(props?: {
 
 function BookUploadPage() {
   const logged_user = JSON.parse(localStorage.getItem("user")!);
-
+  console.log(logged_user);
   return (
     <Box>
       <Paper sx={{ width: "100%", height: "87vh", borderRadius: "15px" }}>
@@ -64,9 +64,9 @@ function BookUploadPage() {
               PaperComponent={PopperComponent}
               disableCloseOnSelect
               id="size-small-filled"
-              options={logged_user.books}
+              options={logged_user?.books}
               getOptionLabel={(option) => option.name}
-              defaultValue={logged_user.books[0]}
+              defaultValue={logged_user?.books[0]}
               sx={{ width: "300px", mb: 15 }}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => {
