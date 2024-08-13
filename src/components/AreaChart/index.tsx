@@ -35,7 +35,7 @@ function AreaChart() {
                 colorStops: [
                   {
                     offset: 0,
-                    opacity: 0.2,
+                    opacity: 0.5,
                     color: "#2982FE",
                   },
                   {
@@ -47,13 +47,24 @@ function AreaChart() {
               },
             },
             grid: {
-              borderColor: "rgba(0,0,0,0)",
+              borderColor: "#E9E9EB",
+              xaxis: {
+                lines: {
+                  show: true,
+                },
+              },
+
+              yaxis: {
+                lines: { show: false },
+              },
             },
             stroke: {
               colors: ["#2982FE"],
               curve: "smooth",
-              width: 2,
+              width: 1.5,
               dashArray: [0, 5],
+              lineCap: "butt",
+              fill: { opacity: 1, colors: ["#000"] },
             },
             dataLabels: {
               enabled: false,
@@ -76,10 +87,8 @@ function AreaChart() {
               axisBorder: {
                 show: false,
               },
-              crosshairs: {
-                show: false,
-              },
             },
+
             tooltip: {
               enabled: true,
             },

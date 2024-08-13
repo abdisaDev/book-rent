@@ -12,7 +12,7 @@ import { Upload as UploadIcon } from "@mui/icons-material";
 import { HTMLAttributes, JSXElementConstructor } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { setIsOpenStatus } from "../../features/modal/modalSlice";
-import PopupModal from "../../components/popup-modal";
+import BookUploadForm from "../../components/popup-modal/book-upload-form";
 
 function PopperComponent(props?: {
   children: JSX.Element;
@@ -20,6 +20,7 @@ function PopperComponent(props?: {
   const dispatch = useAppDispatch();
   return (
     <Paper>
+      <BookUploadForm />
       <Box>{props?.children}</Box>
       <Box sx={{ py: "10px" }}>
         <Divider />
@@ -40,7 +41,7 @@ function PopperComponent(props?: {
 
 function BookUploadPage() {
   const logged_user = JSON.parse(localStorage.getItem("user")!);
-  console.log(logged_user.books);
+
   return (
     <Box>
       <Paper sx={{ width: "100%", height: "87vh", borderRadius: "15px" }}>
