@@ -1,5 +1,5 @@
-import { SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import {
   SpaceDashboardRounded as SpaceDashboardRoundedIcon,
   LibraryBooksRounded as LibraryBooksRoundedIcon,
@@ -8,10 +8,11 @@ import {
   NotificationsActiveRounded as NotificationsActiveRoundedIcon,
   SettingsRounded as SettingsRoundedIcon,
   AccountCircleRounded as AccountCircleRoundedIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
 interface menuListType {
-  icon: OverridableComponent<SvgIconTypeMap<object, 'svg'>> & {
+  index: number;
+  icon: OverridableComponent<SvgIconTypeMap<object, "svg">> & {
     muiName: string;
   };
   label: string;
@@ -20,40 +21,49 @@ interface menuListType {
 
 export const menuLists: menuListType[] = [
   {
+    index: 0,
     icon: SpaceDashboardRoundedIcon,
-    label: 'DashBoard',
+    label: "DashBoard",
   },
   {
+    index: 1,
     icon: LibraryBooksRoundedIcon,
-    label: 'Books',
+    label: "Books",
   },
   {
+    index: 2,
     icon: PersonRoundedIcon,
-    label: 'Owner',
+    label: "Owner",
   },
   {
+    index: 3,
     icon: AddCircleRoundedIcon,
-    label: 'Other',
+    label: "Other",
   },
   {
+    index: 4,
     icon: AddCircleRoundedIcon,
-    label: 'Other',
+    label: "Other",
   },
   {
+    index: 5,
     icon: AddCircleRoundedIcon,
-    label: 'Other',
+    label: "Other",
     end: true,
   },
   {
+    index: 6,
     icon: NotificationsActiveRoundedIcon,
-    label: 'Notification',
+    label: "Notification",
   },
   {
+    index: 7,
     icon: SettingsRoundedIcon,
-    label: 'Setting',
+    label: "Setting",
   },
   {
+    index: 8,
     icon: AccountCircleRoundedIcon,
-    label: 'Login as Book Owner',
+    label: "Login as Book Owner",
   },
 ];
