@@ -5,6 +5,7 @@ import AdminDashBoard from "../pages/dashboard";
 import SignUp from "../pages/auth/signup";
 import Owners from "../pages/owners";
 import AuthLayout from "../layout/auth";
+import SignIn from "../pages/auth/signin";
 
 export const routes: RouteObject[] = [
   {
@@ -34,8 +35,12 @@ export const routes: RouteObject[] = [
         element: <AuthLayout />,
         children: [
           {
-            path: "signup",
+            path: "register",
             element: <SignUp />,
+          },
+          {
+            path: "login",
+            element: <SignIn />,
           },
         ],
       },

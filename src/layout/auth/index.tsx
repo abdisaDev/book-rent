@@ -60,7 +60,11 @@ function AuthLayout() {
               flexDirection: "column",
             }}
           >
-            <Typography variant="h5">SignUp as Owner</Typography>
+            <Typography variant="h5">
+              {location.pathname === "/auth/login"
+                ? "Login"
+                : "Sign Up as Owner"}
+            </Typography>
             <Divider />
           </Box>
         </Box>

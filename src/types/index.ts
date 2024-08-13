@@ -7,3 +7,8 @@ export interface SignUpFormType {
   location: string;
   aggrement: boolean;
 }
+
+export interface SignInFormType {
+  email: string;
+  password: string;
+}
