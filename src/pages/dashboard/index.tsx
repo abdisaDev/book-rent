@@ -97,8 +97,15 @@ function AdminDashBoard() {
         header: "Status",
         Cell: ({ cell }) => {
           return (
-            <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
-              <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                columnGap: 1,
+                height: "fit-content",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center" }}>
                 <FiberManualRecordIcon
                   color={cell.getValue() ? "primary" : "error"}
                   sx={{
