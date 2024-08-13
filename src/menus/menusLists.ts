@@ -33,7 +33,7 @@ export const menuLists: menuListType[] = [
   {
     index: 2,
     icon: PersonRoundedIcon,
-    label: "Owner",
+    label: "Owners",
   },
   {
     index: 3,

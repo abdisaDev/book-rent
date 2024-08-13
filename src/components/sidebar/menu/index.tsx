@@ -4,10 +4,11 @@ import { useState } from "react";
 import { setTitle } from "../../../features/menus/menuSlice";
 
 import { useAppDispatch } from "../../../app/hooks";
+import { useNavigate } from "react-router-dom";
 
 function SideBarMenu() {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const [clickedMenu, setClickedMenu] = useState(0);
   return (
     <Box
@@ -22,6 +23,15 @@ function SideBarMenu() {
           <Button
             key={index}
             onClick={() => {
+              navigate(
+                `${
+                  ["dashboard", "owners", "books"].find(
+                    (path) => menuList.label.toLowerCase() === path
+                  )
+                    ? "/app/" + menuList.label.toLowerCase()
+                    : ""
+                }`
+              );
               dispatch(setTitle(menuList.label));
               setClickedMenu(menuList.index);
             }}
