@@ -6,7 +6,6 @@ interface IsModalOpen {
   isOpen: boolean;
 }
 
-// Define the initial state using that type
 const initialState: IsModalOpen = {
   isOpen: false,
 };

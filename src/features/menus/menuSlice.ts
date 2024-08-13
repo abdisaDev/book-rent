@@ -6,7 +6,6 @@ interface MenuList {
   title: string;
 }
 
-// Define the initial state using that type
 const initialState: MenuList = {
   title: "DashBoard",
 };

@@ -14,10 +14,16 @@ import {
   useUpdateOwnersApproval,
   useUpdateOwnersStatus,
 } from "../../hooks/updateOwnerStatus";
+import { useAppDispatch } from "../../app/hooks";
+import { setIsOpenStatus } from "../../features/modal/modalSlice";
+import PopupModal from "../../components/popup-modal";
+import { setClickedRow } from "../../features/clickedRow/clickedRowSlice";
 
 function Owners() {
   const updateOwnerStatus = useUpdateOwnersStatus;
   const updateOwnerApproval = useUpdateOwnersApproval;
+
+  const dispatch = useAppDispatch();
 
   const { data, isSuccess, refetch, isLoading } = useQuery({
     queryKey: ["fetch-owners"],
@@ -93,9 +99,14 @@ function Owners() {
       {
         accessorKey: "actions",
         header: "Actions",
-        Cell: () => (
+        Cell: ({ cell }) => (
           <>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                dispatch(setIsOpenStatus(true));
+                dispatch(setClickedRow(cell.row.original));
+              }}
+            >
               <VisibilityIcon />
             </IconButton>
             <IconButton color="error">
@@ -150,6 +161,7 @@ function Owners() {
 
   return (
     <Box>
+      <PopupModal />
       <Table
         columns={columns}
         data={isSuccess ? customizedData : []}
