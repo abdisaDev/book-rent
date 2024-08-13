@@ -11,16 +11,6 @@ import {
 import { Upload as UploadIcon } from "@mui/icons-material";
 import { HTMLAttributes, JSXElementConstructor } from "react";
 
-const top100Films = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-];
-
 function PopperComponent(props?: {
   children: JSX.Element;
 }): JSXElementConstructor<HTMLAttributes<HTMLElement>> | undefined {
@@ -38,6 +28,8 @@ function PopperComponent(props?: {
 }
 
 function BookUploadPage() {
+  const logged_user = JSON.parse(localStorage.getItem("user")!);
+  console.log(logged_user.books);
   return (
     <Box>
       <Paper sx={{ width: "100%", height: "87vh", borderRadius: "15px" }}>
@@ -60,9 +52,9 @@ function BookUploadPage() {
               PaperComponent={PopperComponent}
               disableCloseOnSelect
               id="size-small-filled"
-              options={top100Films}
-              getOptionLabel={(option) => option.title}
-              defaultValue={top100Films[0]}
+              options={logged_user.books}
+              getOptionLabel={(option) => option.name}
+              defaultValue={logged_user.books[0]}
               sx={{ width: "300px", mb: 15 }}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => {

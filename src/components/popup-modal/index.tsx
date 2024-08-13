@@ -10,7 +10,7 @@ function PopupModal() {
   const clickedRow = useAppSelector(clickedRowSelector);
   const isOpenSelector = useAppSelector(modalSelector);
   const dispatch = useAppDispatch();
-  console.log(clickedRow);
+
   const handleOnClose = (event, reason) => {
     if (reason === "backdropClick") {
       dispatch(setIsOpenStatus(false));
