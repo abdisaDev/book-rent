@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import useFetchUser from "../../hooks/fetchUser";
 import { Box, Button, Chip, IconButton, Switch } from "@mui/material";
 import Table from "../../components/table";
@@ -19,9 +19,23 @@ function Owners() {
   const updateOwnerStatus = useUpdateOwnersStatus;
   const updateOwnerApproval = useUpdateOwnersApproval;
 
-  const { data, isSuccess, refetch } = useQuery({
+  const { data, isSuccess, refetch, isLoading } = useQuery({
     queryKey: ["fetch-owners"],
     queryFn: useFetchUser,
+  });
+
+  const updateStatusMutation = useMutation({
+    mutationFn: (userEmail: { email: string }) => {
+      console.log("clicked status");
+      return updateOwnerStatus(userEmail);
+    },
+  });
+
+  const updateApprovalMutation = useMutation({
+    mutationFn: (userEmail: { email: string }) => {
+      console.log("clicked approval");
+      return updateOwnerApproval(userEmail);
+    },
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,8 +74,10 @@ function Owners() {
                       color={value ? "success" : "error"}
                       size="small"
                       onClick={() => {
-                        updateOwnerStatus({ email: cell.row.original.email });
-                        refetch();
+                        updateStatusMutation.mutate({
+                          email: cell.row.original.email,
+                        });
+                        isSuccess && refetch();
                       }}
                     />
                   </Box>
@@ -100,7 +116,9 @@ function Owners() {
                 <Button
                   sx={{ color: "#FFF" }}
                   onClick={() => {
-                    updateOwnerApproval({ email: cell.row.original.email });
+                    updateApprovalMutation.mutate({
+                      email: cell.row.original.email,
+                    });
                     refetch();
                   }}
                 >
@@ -126,7 +144,8 @@ function Owners() {
         columns={columns}
         data={isSuccess ? data.data : []}
         title="List Of Owners"
-        pageSize={9}
+        pageSize={10}
+        isLoading={isLoading}
       />
     </Box>
   );

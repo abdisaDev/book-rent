@@ -4,6 +4,7 @@ import MainLayout from "../layout/main";
 import AdminDashBoard from "../pages/dashboard";
 import SignUp from "../pages/auth/signup";
 import Owners from "../pages/owners";
+import AuthLayout from "../layout/auth";
 
 export const routes: RouteObject[] = [
   {
@@ -25,6 +26,16 @@ export const routes: RouteObject[] = [
           {
             path: "books",
             element: <h2>Child</h2>,
+          },
+        ],
+      },
+      {
+        path: "auth",
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "signup",
+            element: <SignUp />,
           },
         ],
       },

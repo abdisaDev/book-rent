@@ -13,11 +13,15 @@ function Table(props: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: MRT_ColumnDef<any>[];
   pageSize: number;
+  isLoading?: boolean;
 }) {
   const table = useMaterialReactTable({
     data: props.data,
     columns: props.columns,
     initialState: { pagination: { pageSize: props.pageSize, pageIndex: 0 } },
+    state: {
+      isLoading: props.isLoading,
+    },
     muiTablePaperProps: {
       sx: {
         borderRadius: "15px",
