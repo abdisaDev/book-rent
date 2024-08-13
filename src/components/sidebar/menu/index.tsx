@@ -47,6 +47,11 @@ function SideBarMenu() {
                   clickedMenu !== index ? "#00ABFF6B" : "#00ABFF",
               },
               mb: menuList.end ? "40px" : "0",
+              display:
+                JSON.parse(localStorage.getItem("user")!).role.toLowerCase() ===
+                  "owner" && menuList.label.toLowerCase() === "owners"
+                  ? "none"
+                  : "inherit",
             }}
           >
             <menuList.icon /> {menuList.label}

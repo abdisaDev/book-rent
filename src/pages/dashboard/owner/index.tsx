@@ -1,10 +1,14 @@
-import { Box, Chip, Typography } from "@mui/material";
-import Statistics from "../../components/statistics";
-import Table from "../../components/table";
-import AreaChart from "../../components/AreaChart";
+import { Box, Chip, IconButton, Typography } from "@mui/material";
+import Statistics from "../../../components/statistics";
+import Table from "../../../components/table";
+import AreaChart from "../../../components/AreaChart";
 import { useMemo } from "react";
 import { type MRT_ColumnDef } from "material-react-table";
-import { FiberManualRecord as FiberManualRecordIcon } from "@mui/icons-material";
+import {
+  FiberManualRecord as FiberManualRecordIcon,
+  Delete as DeleteIcon,
+  Edit as EditIcon,
+} from "@mui/icons-material";
 
 interface BookStatus {
   book_number: string;
@@ -15,64 +19,7 @@ interface BookStatus {
 
 const { books: data } = JSON.parse(localStorage.getItem("user")!);
 
-// const data: BookStatus[] = [
-//   {
-//     book_number: 'Snow',
-//     owner: 'Jon',
-//     status: 'Rented',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Lannister',
-//     owner: 'Cersei',
-//     status: 'Rented',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Lannister',
-//     owner: 'Jaime',
-//     status: 'Rented',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Stark',
-//     owner: 'Arya',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Targaryen',
-//     owner: 'Daenerys',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Melisandre',
-//     owner: 'Abdisa',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Clifford',
-//     owner: 'Ferrara',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Frances',
-//     owner: 'Rossini',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-//   {
-//     book_number: 'Roxie',
-//     owner: 'Harvey',
-//     status: 'Free',
-//     price: '200 Birr',
-//   },
-// ];
-
-function AdminDashBoard() {
+function OwnerDashBoard() {
   const columns = useMemo<MRT_ColumnDef<BookStatus>[]>(
     () => [
       {
@@ -133,6 +80,29 @@ function AdminDashBoard() {
           </Box>
         ),
       },
+      {
+        accessorKey: "status",
+        header: "Status",
+        Cell: ({ cell }) => {
+          return (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                columnGap: 1,
+                height: "fit-content",
+              }}
+            >
+              <IconButton>
+                <EditIcon />
+              </IconButton>
+              <IconButton color="error">
+                <DeleteIcon />
+              </IconButton>
+            </Box>
+          );
+        },
+      },
     ],
     []
   );
@@ -172,4 +142,4 @@ function AdminDashBoard() {
   );
 }
 
-export default AdminDashBoard;
+export default OwnerDashBoard;
