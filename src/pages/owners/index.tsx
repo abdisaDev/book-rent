@@ -157,8 +157,9 @@ function Owners() {
         const { quantity } = book;
         totalQuantity += quantity;
       });
-      return { books: `${totalQuantity} Books`, ...data.user };
+      return { ...data, books: `${totalQuantity} Books` };
     });
+  console.log(customizedData);
 
   return (
     <Box>
