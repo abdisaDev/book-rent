@@ -8,6 +8,7 @@ import AuthLayout from '../layout/auth';
 import SignIn from '../pages/auth/signin';
 import Books from '../pages/books';
 import OwnerDashBoard from '../pages/dashboard/owner';
+import BookUploadPage from '../pages/book-upload-page';
 
 const user = JSON.parse(localStorage.getItem('user')!);
 
@@ -49,7 +50,7 @@ export const routes: RouteObject[] = [
           {
             path: 'dashboard',
             element: localStorage.getItem('access_token') ? (
-              user?.role.toLowerCase() === 'owner' ? (
+              user?.role.toLowerCase() == 'owner' ? (
                 <OwnerDashBoard />
               ) : (
                 <AdminDashBoard />
@@ -69,7 +70,11 @@ export const routes: RouteObject[] = [
           {
             path: 'books',
             element: localStorage.getItem('access_token') ? (
-              <Books />
+              user?.role.toLowerCase() == 'owner' ? (
+                <BookUploadPage />
+              ) : (
+                <Books />
+              )
             ) : (
               <Navigate to={user ? '/app/books' : '/auth/login'} replace />
             ),
