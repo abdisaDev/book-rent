@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "../../app/store";
-import type { PayloadAction, Slice } from "@reduxjs/toolkit";
-import { object } from "zod";
+import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '../../app/store';
+import type { PayloadAction, Slice } from '@reduxjs/toolkit';
 
 interface ClickedRowType {
   row: object;
@@ -12,7 +11,7 @@ const initialState: ClickedRowType = {
 };
 
 export const clickedRowSlice: Slice<object> = createSlice({
-  name: "menulist",
+  name: 'menulist',
   initialState,
   reducers: {
     setClickedRow: (state, action: PayloadAction<object>) => {
