@@ -6,6 +6,7 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { SignInFormType } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import useLoginUser from '../../hooks/loginUser';
+import { useEffect } from 'react';
 
 const formSchema = z.object({
   email: z.string({ message: 'Required' }).email(),
@@ -26,6 +27,10 @@ function SignInForm() {
       return loginUser(loginPayload);
     },
   });
+
+  useEffect(() => {
+    if (mutation.isSuccess) navigate('/app/dashboard');
+  }, [mutation.isSuccess]);
 
   return (
     <Box>
@@ -83,14 +88,7 @@ function SignInForm() {
                 />
               </Box>
               <Box>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  fullWidth
-                  onClick={() => {
-                    if (mutation.isSuccess) navigate('/app/dashboard');
-                  }}
-                >
+                <Button type='submit' variant='contained' fullWidth>
                   LogIn
                 </Button>
               </Box>
