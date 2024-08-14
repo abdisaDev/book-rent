@@ -1,55 +1,54 @@
-import { RouteObject } from "react-router-dom";
-import App from "../App";
-import MainLayout from "../layout/main";
-import AdminDashBoard from "../pages/dashboard/owner";
-import SignUp from "../pages/auth/signup";
-import Owners from "../pages/owners";
-import AuthLayout from "../layout/auth";
-import SignIn from "../pages/auth/signin";
-import BookUploadPage from "../pages/book-upload-page";
-import Books from "../pages/books";
-import OwnerDashBoard from "../pages/dashboard/owner";
+import { RouteObject } from 'react-router-dom';
+import App from '../App';
+import MainLayout from '../layout/main';
+import AdminDashBoard from '../pages/dashboard/owner';
+import SignUp from '../pages/auth/signup';
+import Owners from '../pages/owners';
+import AuthLayout from '../layout/auth';
+import SignIn from '../pages/auth/signin';
+import Books from '../pages/books';
+import OwnerDashBoard from '../pages/dashboard/owner';
 
-const user = JSON.parse(localStorage.getItem("user")!);
+const user = JSON.parse(localStorage.getItem('user')!);
 
 export const routes: RouteObject[] = [
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
-        path: "app",
+        path: 'app',
         element: <MainLayout />,
         children: [
           {
-            path: "dashboard",
+            path: 'dashboard',
             element:
-              user.role.toLowerCase() === "owner" ? (
+              user.role.toLowerCase() === 'owner' ? (
                 <OwnerDashBoard />
               ) : (
                 <AdminDashBoard />
               ),
           },
           {
-            path: "owners",
+            path: 'owners',
             element: <Owners />,
           },
           {
-            path: "books",
+            path: 'books',
             element: <Books />,
           },
         ],
       },
       {
-        path: "auth",
+        path: 'auth',
         element: <AuthLayout />,
         children: [
           {
-            path: "register",
+            path: 'register',
             element: <SignUp />,
           },
           {
-            path: "login",
+            path: 'login',
             element: <SignIn />,
           },
         ],
