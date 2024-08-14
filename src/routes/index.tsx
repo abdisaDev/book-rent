@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 import App from '../App';
 import MainLayout from '../layout/main';
 import AdminDashBoard from '../pages/dashboard/owner';
@@ -17,25 +17,48 @@ export const routes: RouteObject[] = [
     element: <App />,
     children: [
       {
+        index: true,
+        element: (
+          <Navigate to={user ? '/app/dashboard' : '/auth/login'} replace />
+        ),
+      },
+      {
         path: 'app',
         element: <MainLayout />,
         children: [
           {
+            index: true,
+            element: (
+              <Navigate to={user ? '/app/dashboard' : '/auth/login'} replace />
+            ),
+          },
+          {
             path: 'dashboard',
-            element:
+            element: user ? (
               user?.role.toLowerCase() === 'owner' ? (
                 <OwnerDashBoard />
               ) : (
                 <AdminDashBoard />
-              ),
+              )
+            ) : (
+              <Navigate to={user ? '/app/dashboard' : '/auth/login'} replace />
+            ),
           },
           {
             path: 'owners',
-            element: <Owners />,
+            element: user ? (
+              <Owners />
+            ) : (
+              <Navigate to={user ? '/app/owners' : '/auth/login'} replace />
+            ),
           },
           {
             path: 'books',
-            element: <Books />,
+            element: user ? (
+              <Books />
+            ) : (
+              <Navigate to={user ? '/app/books' : '/auth/login'} replace />
+            ),
           },
         ],
       },
