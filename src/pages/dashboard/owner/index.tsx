@@ -17,7 +17,7 @@ interface BookStatus {
   price: string;
 }
 
-const { books: data } = JSON.parse(localStorage.getItem('user')!);
+const books = JSON.parse(localStorage.getItem('user')!);
 
 function OwnerDashBoard() {
   const columns = useMemo<MRT_ColumnDef<BookStatus>[]>(
@@ -129,7 +129,7 @@ function OwnerDashBoard() {
         <Box>
           <Table
             columns={columns}
-            data={data}
+            data={books ? books : []}
             title='Live Book Status'
             pageSize={6}
           />

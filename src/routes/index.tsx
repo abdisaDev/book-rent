@@ -23,7 +23,7 @@ export const routes: RouteObject[] = [
           {
             path: 'dashboard',
             element:
-              user.role.toLowerCase() === 'owner' ? (
+              user?.role.toLowerCase() === 'owner' ? (
                 <OwnerDashBoard />
               ) : (
                 <AdminDashBoard />
