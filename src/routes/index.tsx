@@ -19,7 +19,14 @@ export const routes: RouteObject[] = [
       {
         index: true,
         element: (
-          <Navigate to={user ? '/app/dashboard' : '/auth/login'} replace />
+          <Navigate
+            to={
+              localStorage.getItem('access_token')
+                ? '/app/dashboard'
+                : '/auth/login'
+            }
+            replace
+          />
         ),
       },
       {
@@ -29,12 +36,19 @@ export const routes: RouteObject[] = [
           {
             index: true,
             element: (
-              <Navigate to={user ? '/app/dashboard' : '/auth/login'} replace />
+              <Navigate
+                to={
+                  localStorage.getItem('access_token')
+                    ? '/app/dashboard'
+                    : '/auth/login'
+                }
+                replace
+              />
             ),
           },
           {
             path: 'dashboard',
-            element: user ? (
+            element: localStorage.getItem('access_token') ? (
               user?.role.toLowerCase() === 'owner' ? (
                 <OwnerDashBoard />
               ) : (
@@ -46,7 +60,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: 'owners',
-            element: user ? (
+            element: localStorage.getItem('access_token') ? (
               <Owners />
             ) : (
               <Navigate to={user ? '/app/owners' : '/auth/login'} replace />
@@ -54,7 +68,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: 'books',
-            element: user ? (
+            element: localStorage.getItem('access_token') ? (
               <Books />
             ) : (
               <Navigate to={user ? '/app/books' : '/auth/login'} replace />

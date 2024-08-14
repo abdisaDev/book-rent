@@ -1,20 +1,20 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { Formik, Form } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { SignInFormType } from "../../types";
-import { useMutation } from "@tanstack/react-query";
-import useLoginUser from "../../hooks/loginUser";
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { Formik, Form } from 'formik';
+import { Link, useNavigate } from 'react-router-dom';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { SignInFormType } from '../../types';
+import { useMutation } from '@tanstack/react-query';
+import useLoginUser from '../../hooks/loginUser';
 
 const formSchema = z.object({
-  email: z.string({ message: "Required" }).email(),
-  password: z.string({ message: "Required" }),
+  email: z.string({ message: 'Required' }).email(),
+  password: z.string({ message: 'Required' }),
 });
 
 const initialValues: SignInFormType = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 };
 
 function SignInForm() {
@@ -31,9 +31,10 @@ function SignInForm() {
     <Box>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, { resetForm }) => {
-          mutation.mutate(values);
+        onSubmit={async (values, { resetForm }) => {
+          await mutation.mutateAsync(values);
           resetForm();
+          localStorage.getItem('user') && navigate('/app/dashboard');
         }}
         validationSchema={toFormikValidationSchema(formSchema)}
       >
@@ -48,16 +49,16 @@ function SignInForm() {
           <Form onSubmit={handleSubmit}>
             <Box
               sx={{
-                rowGap: "10px",
-                display: "flex",
-                flexDirection: "column",
+                rowGap: '10px',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <Box>
                 <TextField
-                  name="email"
-                  label="E-mail"
-                  type="email"
+                  name='email'
+                  label='E-mail'
+                  type='email'
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -68,9 +69,9 @@ function SignInForm() {
               </Box>
               <Box>
                 <TextField
-                  name="password"
-                  label="Password"
-                  type="password"
+                  name='password'
+                  label='Password'
+                  type='password'
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -83,20 +84,20 @@ function SignInForm() {
               </Box>
               <Box>
                 <Button
-                  type="submit"
-                  variant="contained"
+                  type='submit'
+                  variant='contained'
                   fullWidth
                   onClick={() => {
-                    if (mutation.isSuccess) navigate("/app/dashboard");
+                    if (mutation.isSuccess) navigate('/app/dashboard');
                   }}
                 >
                   LogIn
                 </Button>
               </Box>
               <Box>
-                <Typography textAlign="center">
+                <Typography textAlign='center'>
                   Have not an account ?
-                  <Link to="/auth/register" color="primary">
+                  <Link to='/auth/register' color='primary'>
                     Sign Up
                   </Link>
                 </Typography>
