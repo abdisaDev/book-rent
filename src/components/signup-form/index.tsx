@@ -1,41 +1,41 @@
-import { Box, Button, Input, TextField, Typography } from '@mui/material';
-import { Formik, Form } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
-import { z } from 'zod';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { SignUpFormType } from '../../types';
-import useRegisterUser from '../../hooks/registerUser';
-import { useMutation } from '@tanstack/react-query';
+import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import { Formik, Form } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import { SignUpFormType } from "../../types";
+import useRegisterUser from "../../hooks/registerUser";
+import { useMutation } from "@tanstack/react-query";
 
 const formSchema = z
   .object({
-    name: z.string({ message: 'Required' }),
-    email: z.string({ message: 'Required' }).email(),
+    name: z.string({ message: "Required" }),
+    email: z.string({ message: "Required" }).email(),
     phone_number: z
-      .string({ message: 'Required' })
+      .string({ message: "Required" })
       .regex(/^(0|\+251|251)(9|7)[0-9]{8}$/, {
         message:
-          'Invalid Phone Number, The phone number has to be either safari or ethio telecom',
+          "Invalid Phone Number, The phone number has to be either safari or ethio telecom",
       }),
     password: z
-      .string({ message: 'Required' })
-      .min(8, 'Password must be at least 8 characters long'),
-    confirm_password: z.string({ message: 'Required' }),
-    location: z.string({ message: 'Required' }),
-    aggrement: z.boolean({ message: 'Please Accept the Terms and Conditions' }),
+      .string({ message: "Required" })
+      .min(8, "Password must be at least 8 characters long"),
+    confirm_password: z.string({ message: "Required" }),
+    location: z.string({ message: "Required" }),
+    aggrement: z.boolean({ message: "Please Accept the Terms and Conditions" }),
   })
   .refine((schema) => schema.password === schema.confirm_password, {
-    path: ['confirm_password'],
-    message: 'Passwords do not match',
+    path: ["confirm_password"],
+    message: "Passwords do not match",
   });
 
 const initialValues: SignUpFormType = {
-  name: '',
-  email: '',
-  password: '',
-  confirm_password: '',
-  location: '',
-  phone_number: '',
+  name: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+  location: "",
+  phone_number: "",
   aggrement: false,
 };
 
@@ -57,7 +57,7 @@ function SignUpForm() {
         onSubmit={async (values, { resetForm }) => {
           await mutation.mutateAsync(values);
           resetForm();
-          localStorage.getItem('registred') && navigate('/auth/login');
+          localStorage.getItem("registred") && navigate("/auth/login");
           localStorage.clear();
         }}
         validationSchema={toFormikValidationSchema(formSchema)}
@@ -73,15 +73,15 @@ function SignUpForm() {
           <Form onSubmit={handleSubmit}>
             <Box
               sx={{
-                rowGap: '10px',
-                display: 'flex',
-                flexDirection: 'column',
+                rowGap: "10px",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <Box>
                 <TextField
-                  name='name'
-                  label='Name'
+                  name="name"
+                  label="Name"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
@@ -92,9 +92,9 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='email'
-                  label='E-mail'
-                  type='email'
+                  name="email"
+                  label="E-mail"
+                  type="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -105,9 +105,9 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='password'
-                  label='Password'
-                  type='password'
+                  name="password"
+                  label="Password"
+                  type="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -120,9 +120,9 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='confirm_password'
-                  label='Confirm Password'
-                  type='password'
+                  name="confirm_password"
+                  label="Confirm Password"
+                  type="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirm_password}
@@ -139,8 +139,8 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='location'
-                  label='Location'
+                  name="location"
+                  label="Location"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.location}
@@ -153,8 +153,8 @@ function SignUpForm() {
               </Box>
               <Box>
                 <TextField
-                  name='phone_number'
-                  label='Phone Number'
+                  name="phone_number"
+                  label="Phone Number"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.phone_number}
@@ -167,34 +167,34 @@ function SignUpForm() {
               </Box>
               <Box
                 sx={{
-                  display: 'flex',
+                  display: "flex",
                   columnGap: 1,
-                  alignItems: 'center',
+                  alignItems: "center",
                 }}
               >
                 <Input
-                  type='checkbox'
-                  name='aggrement'
-                  id='aggrement'
+                  type="checkbox"
+                  name="aggrement"
+                  id="aggrement"
                   value={values.aggrement}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={Boolean(errors.aggrement && touched.aggrement)}
                 />
                 {<span>{touched.aggrement && errors.aggrement}</span>}
-                <label htmlFor='aggrement'>
+                <label htmlFor="aggrement">
                   I accept the Term and Conditions.
                 </label>
               </Box>
               <Box>
-                <Button type='submit' variant='contained' fullWidth>
+                <Button type="submit" variant="contained" fullWidth>
                   Sign Up
                 </Button>
               </Box>
               <Box>
-                <Typography textAlign='center'>
-                  Already have an account{' '}
-                  <Link to='/auth/login' color='primary'>
+                <Typography textAlign="center">
+                  Already have an account?&nbsp;
+                  <Link to="/auth/login" color="primary">
                     Login
                   </Link>
                 </Typography>
